@@ -1,7 +1,8 @@
 import * as React from "react";
 import Image from "next/image";
+import MyImageLoader from "../../assets/loader";
 export interface ICustomImageProps {
-  src: string;
+  src: any;
   alt: string;
   className?: string;
   width: number;
