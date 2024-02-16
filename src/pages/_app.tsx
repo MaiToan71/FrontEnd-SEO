@@ -14,10 +14,8 @@ if (typeof window !== "undefined") {
 const MyApp = ({ Component, pageProps }:AppProps) => (
   <>
     <Head>
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
-      />
+        <title>Thi bằng lái xe số 1</title>
+        <meta name="description" content="Thi bằng lái xe số 1" />
     </Head>
     <ContextProvider>
       <Layout>

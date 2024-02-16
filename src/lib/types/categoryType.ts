@@ -1,4 +1,5 @@
 import {Image} from './imageType';
+import { Product } from './productType';
 export interface Category  {
     id: number;
     key: number;
@@ -7,7 +8,8 @@ export interface Category  {
     title: string;
     note: string;
     description: string,
-    banners: [Image]
+    banners: [Image],
+    products:[Product]
   }
 
   

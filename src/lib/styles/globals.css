@@ -2,3 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+.outstand h3{
+    background-color: #007242;
+    color: white;
+    padding :15px 15px;
+}
+ul li{
+    list-style:none;
+
+}
+.outstand .outstand-category li{
+    padding :5px 15px;
+    color: #007242;
+    background: #d5f3e6;
+    border-top: 1px solid #007242
+}
+
+.outstand .outstand-products li{
+text-align: left;
+line-height: 1.6;
+border-top:1px solid #ddd;
+padding :5px 15px;
+}
+
+footer .footer-left h3{
+    text-rendering: 'optimizeSpeed';
+}
