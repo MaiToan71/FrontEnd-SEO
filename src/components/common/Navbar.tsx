@@ -55,7 +55,7 @@ const Navbar = () => {
                 <CustomLink
                   as={`${FRONTEND_URL}`}
                   href={`${FRONTEND_URL}}`}
-                  name={"Trang chủ"}
+                  html={"Trang chủ"}
                   key={0}
                   className="block py-2 px-3  text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 />
@@ -67,7 +67,7 @@ const Navbar = () => {
                       <CustomLink
                         as={`${FRONTEND_URL}/danh-muc/${i.id}`}
                         href={`${FRONTEND_URL}/danh-muc/${i.id}`}
-                        name={i.name}
+                        html={i.name}
                         key={index}
                         className="block py-2 px-3  text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                       />
@@ -82,7 +82,7 @@ const Navbar = () => {
         <div className="w-[50%]  flex justify-start ">
        <div>
        <h1 className=" flex-auto text-[29px] text-center font-bold text-[#007242] uppercase ">
-          Trung tâm đào tạo <br /> lái xe Hà Nội
+       TRUNG TÂM THI BẰNG LÁI XE  <br /> TẠI HÀ NỘI
         </h1>
        </div>
         </div>
@@ -99,8 +99,8 @@ const Navbar = () => {
             </div>
             <div>
               <div className="uppercase font-bold ml-3">Địa chỉ</div>
-              <div className="m-3">
-                Số 49 Ngõ 335 Nguyễn Trãi - Q. Thanh Xuân - Hà Nội
+              <div className="m-3 ">
+              Trung Tâm Đào Tạo Lái Xe Mỹ Đình 63 Đ. Lê Đức Thọ, Mỹ Đình, Từ Liêm, Hà Nội 
               </div>
             </div>
           </div>
@@ -116,7 +116,8 @@ const Navbar = () => {
             </div>
             <div>
               <div className="uppercase font-bold ml-3">HOTLINE</div>
-              <div className="m-3">0985248802</div>
+              <div className="m-3">033241888</div>
+              <div className="m-3" style={{marginTop:'-10px'}}>037902555</div>
             </div>
           </div>
         </div>

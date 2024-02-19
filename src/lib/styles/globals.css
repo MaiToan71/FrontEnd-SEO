@@ -1,7 +1,9 @@
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
-@tailwind variants;
+body {
+    font-family: "Roboto", sans-serif
+}
+
 
 .outstand h3{
     background-color: #007242;
@@ -29,3 +31,4 @@ padding :5px 15px;
 footer .footer-left h3{
     text-rendering: 'optimizeSpeed';
 }
+

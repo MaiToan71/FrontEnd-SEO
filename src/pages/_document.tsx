@@ -2,7 +2,6 @@ import Document, { Head, Main, NextScript } from "next/document";
 import React from "react";
 //import flush from "styled-jsx/server";
 class MyDocument extends Document {
-
   render() {
     return (
       <html lang="en">
@@ -18,6 +17,20 @@ class MyDocument extends Document {
           <meta property="og:locale" content="en_US" />
           <meta property="og:site_name" content="next-realworld" />
           <meta property="og:title" content="Next.js realworld example app" />
+          <link
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css?family=Roboto%3Aregular%2C500%2Cregular%2C700%7CDancing%20Script%3Aregular%2Cdefault&#038;display=swap"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto%3Aregular%2C500%2Cregular%2C700%7CDancing%20Script%3Aregular%2Cdefault&#038;display=swap"
+            media="print"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto%3Aregular%2C500%2Cregular%2C700%7CDancing%20Script%3Aregular%2Cdefault&#038;display=swap"
+          />
           <meta
             property="og:description"
             content="Next.js + SWR codebase containing realworld examples"

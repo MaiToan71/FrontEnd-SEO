@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import Layout from "../components/common/Layout";
 import ContextProvider from "../lib/context";
 import '../lib/styles/globals.css';
+import '../lib/styles/tiny.css';
 import lazySizes from 'lazysizes';
 if (typeof window !== "undefined") {
   require("lazysizes/plugins/attrchange/ls.attrchange.js");

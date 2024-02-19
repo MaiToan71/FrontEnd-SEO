@@ -6,6 +6,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
+import CustomLink from "../../components/common/CustomLink";
 import DOMPurify from "isomorphic-dompurify";
 import * as React from "react";
 import Breadcrumb from "../../components/common/Breadcrumb";
@@ -164,7 +165,7 @@ const CategoryDetail = () => {
                         outstands
                           .slice(2, 3)[0]
                           .products.map((p: any, pIndex: number) => {
-                            console.log(p);
+                            
                             return (
                               <>
                                 {" "}
@@ -191,7 +192,7 @@ const CategoryDetail = () => {
                         outstands
                           .slice(3, 4)[0]
                           .products.map((p: any, pIndex: number) => {
-                            console.log(p);
+                            
                             return (
                               <>
                                 {" "}
