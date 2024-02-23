@@ -20,16 +20,24 @@ const Navbar = () => {
   );
   return (
     <>
-      <nav className=" border-gray-200 dark:bg-gray-900 backgro bg-[#007242]">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <a
+            href="#"
+            className="flex items-center space-x-3 rtl:space-x-reverse"
+          >
+            <h1 className=" flex-auto text-[15px] text-center font-bold text-[#007242] uppercase lg:hidden">
+            TRUNG TÂM THI BẰNG LÁI XE <br /> TẠI HÀ NỘI
+            </h1>
+          </a>
           <button
-            data-collapse-toggle="#navbar-default"
+            data-collapse-toggle="navbar-dropdown"
             type="button"
-            className=" inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-dropdown"
             aria-expanded="false"
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">Mở danh sách chức năng</span>
             <svg
               className="w-5 h-5"
               aria-hidden="true"
@@ -39,37 +47,37 @@ const Navbar = () => {
             >
               <path
                 stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
                 d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>
           </button>
           <div
-            className="hidden w-full md:block md:w-auto "
-            id="navbar-default"
+            className="hidden w-full md:block md:w-auto"
+            id="navbar-dropdown"
           >
-            <ul className="  font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li className="bg-[#007242]" key={0}>
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <li className="" key={0}>
                 <CustomLink
                   as={`${FRONTEND_URL}`}
                   href={`${FRONTEND_URL}}`}
                   html={"Trang chủ"}
                   key={0}
-                  className="block py-2 px-3  text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                />
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                />{" "}
               </li>
               {data &&
                 data.map((i: Category, index: number) => {
                   return (
-                    <li className="bg-[#007242]" key={i.id}>
+                    <li key={i.id}>
                       <CustomLink
                         as={`${FRONTEND_URL}/danh-muc/${i.id}`}
                         href={`${FRONTEND_URL}/danh-muc/${i.id}`}
                         html={i.name}
                         key={index}
-                        className="block py-2 px-3  text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                       />
                     </li>
                   );
@@ -78,16 +86,16 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <nav className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
-        <div className="w-[50%]  flex justify-start ">
-       <div>
-       <h1 className=" flex-auto text-[29px] text-center font-bold text-[#007242] uppercase ">
-       TRUNG TÂM THI BẰNG LÁI XE  <br /> TẠI HÀ NỘI
-        </h1>
-       </div>
+      <nav className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 flex-col lg:flex-row ">
+        <div className=" flex justify-start  w-full lg:w-[50%] ">
+          <div className=" w-full lg:w-auto">
+            <h1 className=" flex-auto text-center font-bold text-[#007242] uppercase   text-[18px]  lg:text-[29px] hidden lg:block">
+              TRUNG TÂM THI BẰNG LÁI XE <br /> TẠI HÀ NỘI
+            </h1>
+          </div>
         </div>
-        <div className="flex flex-auto justify-end w-[50%]">
-          <div className="  flex flex-auto justify-end">
+        <div className="flex flex-auto justify-end   flex-wrap  w-full lg:w-[50%] ">
+          <div className="  flex  justify-start lg:justify-end w-full lg:w-[70%] ">
             <div>
               <CustomImage
                 alt="Địa chỉ"
@@ -100,11 +108,12 @@ const Navbar = () => {
             <div>
               <div className="uppercase font-bold ml-3">Địa chỉ</div>
               <div className="m-3 ">
-              Trung Tâm Đào Tạo Lái Xe Mỹ Đình 63 Đ. Lê Đức Thọ, Mỹ Đình, Từ Liêm, Hà Nội 
+                Trung Tâm Đào Tạo Lái Xe Mỹ Đình 63 Đ. Lê Đức Thọ, Mỹ Đình, Từ
+                Liêm, Hà Nội
               </div>
             </div>
           </div>
-          <div className="flex flex-auto justify-end ">
+          <div className="flex justify-start lg:justify-end w-full lg:w-[30%] ">
             <div>
               <CustomImage
                 alt="HOTLINE"
@@ -117,7 +126,9 @@ const Navbar = () => {
             <div>
               <div className="uppercase font-bold ml-3">HOTLINE</div>
               <div className="m-3">033241888</div>
-              <div className="m-3" style={{marginTop:'-10px'}}>037902555</div>
+              <div className="m-3" style={{ marginTop: "-10px" }}>
+                037902555
+              </div>
             </div>
           </div>
         </div>

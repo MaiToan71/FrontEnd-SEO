@@ -49,8 +49,8 @@ const CategoryDetail = () => {
   return (
     <>
       <Head>
-        <title>{category&&category.name}</title>
-        <meta name="description" content={category&&category.description} />
+        <title>{category && category.name}</title>
+        <meta name="description" content={category && category.description} />
       </Head>
       <Swiper
         centeredSlides={true}
@@ -84,7 +84,7 @@ const CategoryDetail = () => {
             );
           })}
       </Swiper>
-      <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+      <nav className="max-w-screen-xl flex flex-wrap items-center justify-between  mx-auto pl-4 pr-4  sm:pl-0 sm:pr-0">
         <div className="mt-5">
           <Breadcrumb
             pageLink={`danh-muc/${category && category.id}`}
@@ -92,125 +92,121 @@ const CategoryDetail = () => {
             key={1}
           />
         </div>
-        <div>
-          <div className="grid grid-flow-row-dense grid-cols-4">
-            <div className="col-span-3 pr-5 pt-5">
-              <div dangerouslySetInnerHTML={{ __html: _html }}></div>
-              <div className="products">
-                <div className="grid grid-cols-1 gap-x-6 gap-y-10">
-                  {category &&
-                    category.products.map((i, index) => {
-                      return (
-                        <>
-                          <a href="#" className="group flex">
-                            <div className="aspect-h-1 aspect-w-1  overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                              <CustomImage
-                                alt=""
-                                height={135}
-                                width={240}
-                                className="h-full object-cover object-center group-hover:opacity-75"
-                                src={
-                                  "https://banglaixehanoi.com.vn/wp-content/uploads/2024/02/S42KDT-300x200.jpg"
-                                }
-                              />
-                            </div>
-                            <div className="ml-5 ">
-                              <h3 className="mt-0 text-lg font-medium text-gray-900">
-                                {i.title}
-                              </h3>
-                              <p className="mt-1  text-sm text-gray-700 ">
-                                {moment(i.dateCreated).format("DD/MM/YYYY")}
-                              </p>
-                              <p className="mt-1  text-sm text-gray-700 ">
-                                {i.description}
-                              </p>
-                            </div>
-                          </a>
-                        </>
-                      );
-                    })}
-                </div>
+        <div className="grid grid-flow-row-dense grid-cols-4">
+          <div className="col-span-4  lg:col-span-3  pt-4 pr-0 lg:pr-4">
+            <div dangerouslySetInnerHTML={{ __html: _html }}></div>
+            <div className="products">
+              <div className="grid grid-cols-1 gap-x-6 gap-y-10">
+                {category &&
+                  category.products.map((i, index) => {
+                    return (
+                      <>
+                        <a href="#" className="group flex flex-col lg:flex-row ">
+                          <div className="aspect-h-1 aspect-w-1  w-full lg:w-auto overflow-hidden rounded-lg  bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                            <CustomImage
+                              alt=""
+                              height={135}
+                              width={240}
+                              className="h-full w-full lg:w-auto  object-cover object-center group-hover:opacity-75"
+                              src={
+                                "https://banglaixehanoi.com.vn/wp-content/uploads/2024/02/S42KDT-300x200.jpg"
+                              }
+                            />
+                          </div>
+                          <div className="ml-0 lg:ml-5">
+                            <h3 className="mt-0 text-lg font-medium text-gray-900">
+                              {i.title}
+                            </h3>
+                            <p className="mt-1  text-sm text-gray-700 ">
+                              {moment(i.dateCreated).format("DD/MM/YYYY")}
+                            </p>
+                            <p className="mt-1  text-sm text-gray-700 ">
+                              {i.description}
+                            </p>
+                          </div>
+                        </a>
+                      </>
+                    );
+                  })}
               </div>
             </div>
-            <div className="col-span-1">
-              {outstands.length >= 2 ? (
-                <>
-                  <div className="outstand">
-                    <h3>DỊCH VỤ CỦA CHÚNG TÔI</h3>
-                    <ul className="list-disc outstand-category">
-                      {outstands &&
-                        outstands.slice(0, 2).map((p: any, pIndex: number) => {
+          </div>
+          <div className="col-span-4  lg:col-span-1 mt-4 lg:mt-0">
+            {outstands.length >= 2 ? (
+              <>
+                <div className="outstand">
+                  <h3>DỊCH VỤ CỦA CHÚNG TÔI</h3>
+                  <ul className="list-disc outstand-category">
+                    {outstands &&
+                      outstands.slice(0, 2).map((p: any, pIndex: number) => {
+                        return (
+                          <>
+                            <li key={pIndex}>
+                              <a href="#" key={pIndex}>
+                                {p.name}
+                              </a>
+                            </li>
+                          </>
+                        );
+                      })}
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+            {outstands.length >= 3 ? (
+              <>
+                <div className="outstand mt-5">
+                  <h3>TIN TỨC VỀ BẰNG LÁI XE</h3>
+                  <ul className="list-disc outstand-products">
+                    {outstands &&
+                      outstands
+                        .slice(2, 3)[0]
+                        .products.map((p: any, pIndex: number) => {
                           return (
                             <>
+                              {" "}
                               <li key={pIndex}>
                                 <a href="#" key={pIndex}>
-                                  {p.name}
-                                </a>
+                                  {p.title}
+                                </a>{" "}
                               </li>
                             </>
                           );
                         })}
-                    </ul>
-                  </div>
-                </>
-              ) : (
-                <></>
-              )}
-              {outstands.length >= 3 ? (
-                <>
-                  <div className="outstand mt-5">
-                    <h3>TIN TỨC VỀ BẰNG LÁI XE</h3>
-                    <ul className="list-disc outstand-products">
-                      {outstands &&
-                        outstands
-                          .slice(2, 3)[0]
-                          .products.map((p: any, pIndex: number) => {
-                            
-                            return (
-                              <>
-                                {" "}
-                                <li key={pIndex}>
-                                  <a href="#" key={pIndex}>
-                                    {p.title}
-                                  </a>{" "}
-                                </li>
-                              </>
-                            );
-                          })}
-                    </ul>
-                  </div>
-                </>
-              ) : (
-                <></>
-              )}
-              {outstands.length >= 4 ? (
-                <>
-                  <div className="outstand mt-5">
-                    <h3>HỎI ĐÁP VỀ BẰNG LÁI XE</h3>
-                    <ul className="list-disc outstand-products">
-                      {outstands &&
-                        outstands
-                          .slice(3, 4)[0]
-                          .products.map((p: any, pIndex: number) => {
-                            
-                            return (
-                              <>
-                                {" "}
-                                <li key={pIndex}>
-                                  <a href="#" key={pIndex}>
-                                    {p.title}
-                                  </a>{" "}
-                                </li>
-                              </>
-                            );
-                          })}
-                    </ul>
-                  </div>
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+            {outstands.length >= 4 ? (
+              <>
+                <div className="outstand mt-5">
+                  <h3>HỎI ĐÁP VỀ BẰNG LÁI XE</h3>
+                  <ul className="list-disc outstand-products">
+                    {outstands &&
+                      outstands
+                        .slice(3, 4)[0]
+                        .products.map((p: any, pIndex: number) => {
+                          return (
+                            <>
+                              {" "}
+                              <li key={pIndex}>
+                                <a href="#" key={pIndex}>
+                                  {p.title}
+                                </a>{" "}
+                              </li>
+                            </>
+                          );
+                        })}
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </nav>

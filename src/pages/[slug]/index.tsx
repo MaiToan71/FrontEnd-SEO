@@ -31,16 +31,14 @@ const ArticlePage = (initialArticle: any) => {
 
   return (
     <>
-    <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
-
-      <div className="mt-5">
+    <nav className="max-w-screen-xl flex flex-wrap items-center justify-between  ">
+      <div className="mt-5 w">
         <Breadcrumb
           pageLink={`${data && data.id}`}
           pageName={data && data.title}
           key={1}
         />
       </div>
-
       <div className="grid grid-flow-row-dense grid-cols-4">
         <div className="col-span-3 pr-5 pt-5">
           <div>

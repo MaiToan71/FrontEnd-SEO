@@ -5,7 +5,7 @@ import Layout from "../components/common/Layout";
 import ContextProvider from "../lib/context";
 import '../lib/styles/globals.css';
 import '../lib/styles/tiny.css';
-import lazySizes from 'lazysizes';
+import 'flowbite';
 if (typeof window !== "undefined") {
   require("lazysizes/plugins/attrchange/ls.attrchange.js");
   require("lazysizes/plugins/respimg/ls.respimg.js");
@@ -17,6 +17,7 @@ const MyApp = ({ Component, pageProps }:AppProps) => (
     <Head>
         <title>Thi bằng lái xe số 1</title>
         <meta name="description" content="Thi bằng lái xe số 1" />
+        
     </Head>
     <ContextProvider>
       <Layout>
