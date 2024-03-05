@@ -23,7 +23,7 @@ const Navbar = () => {
       <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a
-            href="#"
+            href={FRONTEND_URL}
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <h1 className=" flex-auto text-[15px] text-center font-bold text-[#007242] uppercase lg:hidden">
@@ -47,7 +47,7 @@ const Navbar = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
+                strokeLinecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
                 d="M1 1h15M1 7h15M1 13h15"
@@ -89,9 +89,10 @@ const Navbar = () => {
       <nav className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 flex-col lg:flex-row ">
         <div className=" flex justify-start  w-full lg:w-[50%] ">
           <div className=" w-full lg:w-auto">
+            <a href={FRONTEND_URL}>
             <h1 className=" flex-auto text-center font-bold text-[#007242] uppercase   text-[18px]  lg:text-[29px] hidden lg:block">
               TRUNG TÂM THI BẰNG LÁI XE <br /> TẠI HÀ NỘI
-            </h1>
+            </h1></a>
           </div>
         </div>
         <div className="flex flex-auto justify-end   flex-wrap  w-full lg:w-[50%] ">
@@ -125,9 +126,9 @@ const Navbar = () => {
             </div>
             <div>
               <div className="uppercase font-bold ml-3">HOTLINE</div>
-              <div className="m-3">033241888</div>
+              <div className="m-3">0332418888</div>
               <div className="m-3" style={{ marginTop: "-10px" }}>
-                037902555
+                0379025555
               </div>
             </div>
           </div>

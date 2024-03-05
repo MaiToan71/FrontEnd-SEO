@@ -31,7 +31,7 @@ const ArticlePage = (initialArticle: any) => {
 
   return (
     <>
-    <nav className="max-w-screen-xl flex flex-wrap items-center justify-between  ">
+    <nav className="max-w-screen-xl flex flex-wrap items-center justify-between  mx-auto pl-4 pr-4  sm:pl-0 sm:pr-0 ">
       <div className="mt-5 w">
         <Breadcrumb
           pageLink={`${data && data.id}`}

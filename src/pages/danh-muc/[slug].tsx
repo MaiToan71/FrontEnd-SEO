@@ -17,7 +17,7 @@ import { SERVER_BASE_URL, FRONTEND_URL } from "../../lib/utils/constant";
 import fetcher from "../../lib/utils/fetcher";
 import { Category } from "../../lib/types/categoryType";
 import CustomImage from "../../components/common/CustomImage";
-import defaulImage from "../../assets/default.jpg";
+import defaultImage from "../../assets/defaultImage.jpg";
 import moment from "moment";
 import Head from "next/head";
 export interface ICategoryDetailProps {}
@@ -55,7 +55,7 @@ const CategoryDetail = () => {
       <Swiper
         centeredSlides={true}
         autoplay={{
-          delay: 3000,
+          delay: 100000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -101,16 +101,14 @@ const CategoryDetail = () => {
                   category.products.map((i, index) => {
                     return (
                       <>
-                        <a href="#" className="group flex flex-col lg:flex-row ">
-                          <div className="aspect-h-1 aspect-w-1  w-full lg:w-auto overflow-hidden rounded-lg  bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                        <a href={`${FRONTEND_URL}/${i.id}`} className="group flex flex-col lg:flex-row ">
+                          <div style={{width:'50%'}} className="aspect-h-1  aspect-w-1  lg:w-auto overflow-hidden rounded-lg  bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                             <CustomImage
                               alt=""
                               height={135}
                               width={240}
-                              className="h-full w-full lg:w-auto  object-cover object-center group-hover:opacity-75"
-                              src={
-                                "https://banglaixehanoi.com.vn/wp-content/uploads/2024/02/S42KDT-300x200.jpg"
-                              }
+                              className="h-full w-full lg:w-auto   object-cover object-center group-hover:opacity-75"
+                              src={defaultImage }
                             />
                           </div>
                           <div className="ml-0 lg:ml-5">

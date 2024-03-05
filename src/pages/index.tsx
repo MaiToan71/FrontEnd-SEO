@@ -36,7 +36,7 @@ export default function Page() {
         <Swiper
           centeredSlides={true}
           autoplay={{
-            delay: 3000,
+            delay: 10000,
             disableOnInteraction: false,
           }}
           pagination={{
@@ -98,7 +98,7 @@ export default function Page() {
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
             {data &&
               data.map((i: any, index: number) => {
-                let productImage = "../assets/default.jpg";
+                let productImage = "../assets/defaultImage.jpg";
                 if (i.images.length > 0) {
                   productImage = i.images[0].imagePath;
                 }
@@ -159,8 +159,8 @@ export default function Page() {
             <div className="justify-center flex ">
               <CustomImage
                 src={student}
-                width={128}
-                height={128}
+                width={80}
+                height={80}
                 alt="Số lượng thi sinh 1 buổi thi"
                 className=""
               />
@@ -174,8 +174,8 @@ export default function Page() {
             <div className="justify-center flex ">
               <CustomImage
                 src={deadline}
-                width={128}
-                height={128}
+                width={80}
+                height={80}
                 alt="Số lượng thi sinh 1 buổi thi"
                 className=""
               />
@@ -189,8 +189,8 @@ export default function Page() {
             <div className="justify-center flex ">
               <CustomImage
                 src={book}
-                width={128}
-                height={128}
+                width={80}
+                height={80}
                 alt="Số lượng thi sinh 1 buổi thi"
                 className=""
               />
@@ -204,8 +204,8 @@ export default function Page() {
             <div className="justify-center flex ">
               <CustomImage
                 src={speaker}
-                width={128}
-                height={128}
+                width={80}
+                height={80}
                 alt="Số lượng thi sinh 1 buổi thi"
                 className=""
               />
@@ -226,10 +226,10 @@ export default function Page() {
             <div className="justify-center flex ">
               <CustomImage
                 src={motobike}
-                width={170}
-                height={170}
+                width={130}
+                height={130}
                 alt="Số lượng thi sinh 1 buổi thi"
-                className="w-[20rem] h-[5rem] lg:w-auto lg:h-auto"
+                className=" lg:w-auto lg:h-auto"
               />
             </div>
             <div className="pl-5">
@@ -246,10 +246,10 @@ export default function Page() {
             <div className="justify-center flex ">
               <CustomImage
                 src={motobike}
-                width={170}
-                height={170}
+                width={130}
+                height={130}
                 alt="Đăng ký nhanh gọn"
-                className="w-[20rem] h-[5rem] lg:w-auto lg:h-auto"
+                className=" lg:w-auto lg:h-auto"
               />
             </div>
             <div className="pl-5">
@@ -266,10 +266,10 @@ export default function Page() {
             <div className="justify-center flex ">
               <CustomImage
                 src={motobike}
-                width={170}
-                height={170}
+                width={130}
+                height={130}
                 alt="Đội ngũ giáo viên giỏi"
-                className="w-[20rem] h-[5rem] lg:w-auto lg:h-auto"
+                className=" lg:w-auto lg:h-auto"
               />
             </div>
             <div className="pl-5">
@@ -286,10 +286,10 @@ export default function Page() {
             <div className="justify-center flex ">
               <CustomImage
                 src={motobike}
-                width={170}
-                height={170}
+                width={130}
+                height={130}
                 alt="Khách hàng hài lòng"
-                className="w-[20rem] h-[5rem] lg:w-auto lg:h-auto"
+                className=" lg:w-auto lg:h-auto"
               />
             </div>
             <div className="pl-5">

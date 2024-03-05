@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
+  exportTrailingSlash: true,
   swcMinify: true,
   images: {
     loader: 'custom',
