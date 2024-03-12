@@ -1,0 +1,91 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <meta name=description content="@ViewData["Description"]">
+    <meta name=keywords content="@Configuration.GetSection("SEO")["keywords"]">
+
+    <meta charset=utf-8>
+    <meta name=Language content=vi>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <meta name=google-play-app content="app-id=thibanglaixeso1">
+    <meta name=apple-itunes-app content="app-id=thibanglaixeso1">
+    <meta name=robots content=index,follow>
+    <meta property=fb:app_id content=1494625070860392>
+    <meta property=fb:admins content=100000557505136>
+    <meta property=og:url itemprop=url content="https://thibanglaixeso1.vn/">
+    <meta property=og:type content=article>
+    <meta property=og:title content="@ViewData["Title"]">
+    <meta property=og:description content="@ViewData["Description"]">
+    <meta property=og:image content="@ViewData["Imags"]">
+    <meta property=article:author content="Thi bằng lái xe">
+    <meta property=article:section content=News>
+    <meta property=article:tag content="@Configuration.GetSection("SEO")["keywords"]">
+    <link rel=apple-touch-icon sizes=180x180 href="/imgs/seo.png">
+    <link rel="icon" type="image/x-icon" href="/imgs/seo.png">
+    <link rel=icon type=image/png sizes=32x32 href="/imgs/seo.png">
+    <link rel=icon type=image/png sizes=16x16 href="/imgs/seo.png">
+    <link rel=manifest href=/site.webmanifest>
+    <link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+    <meta name=msapplication-TileColor content=#da532c>
+    <meta name=theme-color content=#ffffff>
+    <meta name=facebook-domain-verification content=jklkvwzba1tr8mpm74z44l71ndz7iw>
+    <link rel=canonical href="//thibanglaixeso1/">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Project.FrontEnd.styles.css" asp-append-version="true" />
+    <link href="~/lib/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF2WDPWK69"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WF2WDPWK69');
+    </script>
+</head>
+<body>
+    <header>
+        @await Component.InvokeAsync("Menu")
+
+
+    </header>
+    @RenderBody()
+
+
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 col-md-6">
+                    <h2>TRUNG TÂM THI BẰNG LÁI XE TẠI HÀ NỘI</h2>
+                    <div>
+                        <p>Địa chỉ: Trung Tâm Đào Tạo Lái Xe Mỹ Đình 63 Đ. Lê Đức Thọ, Mỹ Đình, Từ Liêm, Hà Nộ</p>
+                        <p>SĐT 1: 0379025555</p>
+                        <p>SĐT 2: 0332418888</p>
+                    </div>
+                    <h3 class="mt-5">NHANH CHÓNG - UY TÍN - GIÁ RẺ</h3>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29792.589577021594!2d105.76961600000001!3d21.029737!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134553e766a9b09%3A0xf32510cf8792335f!2zVHJ1bmcgVMOibSDEkMOgbyBU4bqhbyBMw6FpIFhlIE3hu7kgxJDDrG5o!5e0!3m2!1svi!2sus!4v1709739643859!5m2!1svi!2sus"
+                            style="border:0;width:100%" height="350" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/swiper/swiper-bundle.min.js"></script>
+    <script src="~/js/swiper.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

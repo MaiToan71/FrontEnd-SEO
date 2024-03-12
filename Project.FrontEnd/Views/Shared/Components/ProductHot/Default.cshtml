@@ -1,0 +1,34 @@
+﻿@using Microsoft.Extensions.Configuration
+@using Project.Proxy.ViewModels
+@model List<ProductViewModel>;
+<div class="row">
+    @{
+        foreach(var p in Model)
+        {
+          <div class="col-md-4 col-sm-12">
+                <div class="card" >
+                    @if (p.Images.Count() == 0)
+                    {
+
+                        <img class="card-img-top" src="/imgs/default.jpg" alt="@p.Title" name="@p.Title">
+                    }
+                    @if (p.Images.Count() > 0)
+                    {
+                        var image = p.Images.First();
+                        <img class="card-img-top" src="@image.Path" alt="@p.Title" name="@p.Title">
+                    }
+
+                    <div class="card-body">
+                        <h5 class="card-title">@p.Title</h5>
+                        <p class="card-text">@Html.Raw(@p.Body)</p>
+                     <div class="d-flex justify-content-center">
+                            <a href="@p.SeoAlias" class="btn btn-primary ">Tìm hiểu thêm</a>
+                     </div>
+                    </div>
+                </div>
+          </div>
+       
+        }
+    }
+  
+</div>

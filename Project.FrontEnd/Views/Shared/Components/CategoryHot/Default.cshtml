@@ -1,0 +1,28 @@
+﻿@using Microsoft.Extensions.Configuration
+@using Project.Proxy.ViewModels
+@model List<CategoryOutstandViewModel>;
+<div id="secondary">
+    @{
+        foreach(var c in Model)
+        {
+            <div class="widget widget_nav_menu">
+                <a href="/danh-muc/@c.Slug" style="text-decoration:none">
+                    <h4 class="widget-title ">@c.Name</h4>
+                </a>
+                <ul class="block_widget">
+                    @{
+                        foreach(var p in c.Products)
+                        {
+                            <li class="col post-item">
+                                <a href="@p.SeoAlias">@p.Title</a>
+                            </li>
+                        }
+                    }
+                 
+                </ul>
+            </div>
+        }
+    }
+   
+   
+</div>

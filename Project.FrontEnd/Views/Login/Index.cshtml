@@ -1,0 +1,35 @@
+﻿@using Project.Proxy.ViewModels
+@model LoginViewModel;
+@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="max-width:600px">
+@using (Html.BeginForm("Index", "Login", FormMethod.Post))
+{
+    @if (!string.IsNullOrEmpty(ViewBag.error)){
+        <div class="alert alert-danger" role="alert">
+           @ViewBag.error
+        </div>
+    }
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nhập CMND/CCCD</label>
+        @Html.TextBoxFor(m => m.Username, "", new { @class = "form-control", @placeholder = "Nhập thông tin" })
+
+            <small id="emailHelp" class="form-text text-muted">Thông tin bạn đã đăng ký với trung tâm.</small>
+        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "badge badge-danger" })
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Nhập mật khẩu</label>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Nhập thông tin mật khẩu" })
+            <small id="emailHelp" class="form-text text-muted">Thông tin liên hệ trung tâm cấp mật khẩu.</small>
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "badge badge-danger" })
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        </div>
+}
+</div>
+

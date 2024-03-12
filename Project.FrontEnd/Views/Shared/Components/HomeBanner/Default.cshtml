@@ -1,0 +1,18 @@
+﻿@using Microsoft.Extensions.Configuration
+@using Project.Proxy.ViewModels
+@model List<BannerViewModel>;
+<!-- Swiper -->
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        @{
+            foreach (var m in Model)
+            {
+                <div class="swiper-slide">
+                    <img src="@m.Path" alt="@m.Name" class="img-fluid" />
+                
+                </div>
+            }
+        }
+
+    </div>
+</div>

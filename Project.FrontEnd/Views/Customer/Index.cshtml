@@ -1,0 +1,121 @@
+﻿@using Project.Proxy.Enums
+@using Project.Proxy.ViewModels
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@model CustomerViewModel;
+@{
+    ViewData["Title"] = "Trung tâm thi bằng lái xe tại Hà Nội";
+    ViewData["Description"] = "Trung tâm thi bằng lái xe tại Hà Nội";
+    ViewData["Imags"] = @Configuration.GetSection("Domain")["FrontEnd"] + "/imgs/default.jpg";
+}
+
+<div class="d-flex justify-content-center">
+    <div class="container" style="max-width:600px">
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Họ và tên
+            </div>
+            <div class="col-sm-6">
+                @Model.FullName
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Ngày sinh
+            </div>
+            <div class="col-sm-6">
+                @Model.DateOfBirth
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Ngày cấp CMND/CCCD
+            </div>
+            <div class="col-sm-6">
+                @Model.DateOfCmnd
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                CMND/CCCD
+            </div>
+            <div class="col-sm-6">
+                @Model.Cmnd
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Số điện thoại
+            </div>
+            <div class="col-sm-6 ">
+                @Model.PhoneNumber
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Nơi thường trú
+            </div>
+            <div class="col-sm-6">
+                @Model.Address
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Quê quán
+            </div>
+            <div class="col-sm-6">
+                @Model.Region
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Tổng tiền hồ sơ
+            </div>
+            <div class="col-sm-6 money">
+                @Model.MoneyTotal
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Số tiền đẵ đặt cọc
+            </div>
+            <div class="col-sm-6">
+                @Model.Money
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Tình trạng hồ sơ
+            </div>
+            <div class="col-sm-6">
+                @if(@Model.WorkflowState == @Workflow.CREATED){
+                    <span>Hồ sơ được khởi tạo</span>
+                }
+                @if (@Model.WorkflowState == @Workflow.CANCEL)
+                {
+                    <span style="color:red">Hồ sơ bị hủy</span>
+                }
+                @if (@Model.WorkflowState == @Workflow.PROCESSING)
+                {
+                    <span style="">Hồ sơ đang duyệt</span>
+                }
+                @if (@Model.WorkflowState == @Workflow.COMPLETED)
+                {
+                    <span style="color:blue;font-weight:bold">Thành công</span>
+                }
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-6 title">
+                Ảnh hồ sơ
+            </div>
+          
+        </div>
+        <div class="row mt-2">
+            @foreach(var i in Model.Images)
+            {
+                <img src="@i.Path" class="img-fluid" alt="Responsive image">
+            }
+        </div>
+    </div>
+</div>

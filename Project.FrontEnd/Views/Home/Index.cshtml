@@ -1,0 +1,106 @@
+﻿@using Microsoft.Extensions.Configuration
+@using Project.Proxy.ViewModels
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@model List<ProductViewModel>;
+@{
+    ViewData["Title"] = "Trung tâm thi bằng lái xe tại Hà Nội";
+    ViewData["Description"] = "Trung tâm thi bằng lái xe tại Hà Nội";
+    ViewData["Imags"] = @Configuration.GetSection("Domain")["FrontEnd"] + "/imgs/default.jpg";
+}
+
+<div>
+    @await Component.InvokeAsync("HomeBanner")
+</div>
+<div class="container">
+    <main role="main" class="pb-3">
+        <div class="mt-5">
+            <h3>TRUNG TÂM ĐÀO TẠO BẰNG LÁI XE HÀ NỘI</h3>
+            <p>Trung tâm thi bằng lái xe Hà Nội được thành lập 12/3/2009. Luôn đi đầu trong công tác đào tạo và tổ chức thi giấy phép lái xe, trung tâm đạt rất nhiều thành tích đáng nổi bật. Hàng tháng trung tâm tiếp nhận từ 1800-2000 học viên với tỉ lệ đỗ trên 90%. Với nhiều năm đạt thành tích xuất sắc cùng với nhiều giải thưởng cao quý trong công tác giảng dạy, chúng tôi tự tin giúp các bạn học viên có được tấm bằng lái xe một cách nhanh chóng và hiệu quả nhất.</p>
+            <p>Trung tâm từ chối tiếp nhận bất cứ trường hợp mua bán bằng trái phép, vì nếu không đi thi, không ôn luyện đều là bằng giả, có thể xử lý hình sự nếu gây hậu quả nghiêm trọng.</p>
+            <p>Thi đỗ học viên sẽ được nhận bằng lái xe + hồ sơ gốc qua dịch vụ công Bưu điện liên kết với sở GTVT, bưu kiện sẽ được gửi về nhà sau 7-10 ngày làm việc .</p>
+        </div>
+        <div class="mt-5">
+            <h3>CÁC KHÓA HỌC LÁI XE (TỔ CHỨC LIÊN TỤC TRONG THÁNG)</h3>
+            <div class="mt-5">
+                @await Component.InvokeAsync("ProductHot")
+            </div>
+        </div>
+        <div class="mt-5">
+            <h3>CÁC CON SỐ VỀ THI BẰNG LÁI XE MÁY</h3>
+            <div class="row mt-5">
+                <div class="col-md-3 col-sm-6">
+                    <div class="d-flex justify-content-center ">
+                        <img src="/imgs/student.png" class="" width="120" />
+                    </div>
+                    <p class="text-center">150 NGƯỜI</p>
+                    <p class="text-center">SỐ LƯỢNG THÍ SINH 1 BUỔI THI</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="d-flex justify-content-center ">
+                        <img src="/imgs/deadline-1.png" />
+                    </div>
+                    <div class="text-center">
+                        <p>7 NGÀY</p>
+                        <p>THI XONG, 7 NGÀY SAU CÓ BẰNG</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="d-flex justify-content-center ">
+                        <img src="/imgs/speaker.png" />
+                    </div>
+                    <div class="text-center">
+                        <p>2 GIỜ</p>
+                        <p>THỜI GIAN KÉO DÀI BUỔI THI</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="d-flex justify-content-center ">
+                        <img src="/imgs/book-1.png" />
+                    </div>
+                    <div class="text-center">
+                        <p>14 BUỔI / THÁNG</p>
+                        <p>HÀNG THÁNG CÓ 15 NGÀY THI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <h3>TẠI SAO NÊN CHỌN CHÚNG TÔI</h3>
+            <div class="row mt-5">
+                <div class="col-sm-6 d-flex">
+                    <img src="/imgs/motobike.jpg" class="" width="80" height="80" />
+
+                    <div class="ml-5">
+                        <p>BẰNG THẬT</p>
+                        <p>100% bằng lái xe là bằng thật, có hồ sơ gốc trả cho bạn lưu trữ, nên các bạn yên tâm về chiếc bằng lái xe của mình.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 d-flex">
+                    <img src="/imgs/motobike.jpg" class="" width="80" height="80" />
+
+                    <div class="ml-5">
+                        <p>ĐĂNG KÝ NHANH GỌN/p>
+                        <p>Đăng kí nhanh chóng, dễ dàng, bạn có thể qua Trung tâm hoặc có nhân viên đến nhà bạn làm hồ sơ.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 d-flex  mt-4">
+                    <img src="/imgs/motobike.jpg" class="" width="80" height="80" />
+
+                    <div class="ml-5">
+                        <p>ĐỘI NGŨ GIÁO VIÊN GIỎI</p>
+                        <p>Đội ngũ giáo viên có kĩ năng giỏi, nhiệt tình. Cam kết hỗ trợ tối đa để bạn có được chiếc bằng lái xe.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 d-flex  mt-4">
+                    <img src="/imgs/motobike.jpg" class="" width="80" height="80" />
+
+                    <div class="ml-5">
+                        <p>KHÁCH HÀNG HÀI LÒNG</p>
+                        <p>Với phương châm lấy sự uy tín lên hàng đầu, Trung tâm cam kết sẽ làm hài lòng tất cả các bạn đến Trung tâm đăng kí.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
