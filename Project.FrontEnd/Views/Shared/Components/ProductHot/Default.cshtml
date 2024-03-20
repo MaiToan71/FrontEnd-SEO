@@ -10,12 +10,12 @@
                     @if (p.Images.Count() == 0)
                     {
 
-                        <img class="card-img-top" src="/imgs/default.jpg" alt="@p.Title" name="@p.Title">
+                        <img class="card-img-top" src="/imgs/default.jpg" alt="@p.Title" height="250" width="90" name="@p.Title" loading="lazy">
                     }
                     @if (p.Images.Count() > 0)
                     {
                         var image = p.Images.First();
-                        <img class="card-img-top" src="@image.Path" alt="@p.Title" name="@p.Title">
+                        <img class="card-img-top" src="@image.Path" alt="@p.Title" name="@p.Title" loading="lazy" height="250" width="90">
                     }
 
                     <div class="card-body">
