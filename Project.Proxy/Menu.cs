@@ -1,4 +1,7 @@
-﻿using Project.Proxy.Interfaces;
+﻿using Newtonsoft.Json;
+using Project.Caching;
+using Project.Caching.Interfaces;
+using Project.Proxy.Interfaces;
 using Project.Proxy.ViewModels;
 using System.Net.Http.Headers;
 
@@ -7,16 +10,28 @@ namespace Project.Proxy
     public class Menu : IMenu
     {
         private readonly string _api;
-       
-        public Menu(string api )
+        private readonly ICachingExtension _ICachingExtension;
+        public Menu(string api , ICachingExtension ICachingExtension)
         {
+            _ICachingExtension= ICachingExtension;
             _api = api;
         }
         public async Task<List<MenuViewModel>> GetAll()
         {
             List<MenuViewModel> array = new List<MenuViewModel>();
+            string cacheKey = $"GetMenus";
+            object cache_Payload;
+       
             try
             {
+                var hitCached = _ICachingExtension.TryGetCache(out cache_Payload, cacheKey);
+                if (hitCached)
+                {
+                    var responseCache = JsonConvert.DeserializeObject<List<MenuViewModel>>((string)cache_Payload);
+
+
+                    return responseCache;
+                }
                 using (HttpClient httpClient = new HttpClient())
                 {
                     httpClient.BaseAddress = new Uri(_api);
@@ -44,7 +59,8 @@ namespace Project.Proxy
                         }
                     }
 
-
+                    string dataJson = JsonConvert.SerializeObject(array);
+                    _ICachingExtension.SetCache(cacheKey, dataJson, 1 * 60);
                     return array;
 
                 }

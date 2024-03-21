@@ -1,4 +1,6 @@
-﻿using Project.Proxy.Interfaces;
+﻿using Newtonsoft.Json;
+using Project.Caching.Interfaces;
+using Project.Proxy.Interfaces;
 using Project.Proxy.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,16 +14,29 @@ namespace Project.Proxy
     public class Hot : IHot
     {
         private readonly string _api;
-        public Hot(string api)
+        private readonly ICachingExtension _ICachingExtension;
+        public Hot(string api, ICachingExtension ICachingExtension)
         {
+            _ICachingExtension = ICachingExtension;
             _api = api;
         }
 
         public async Task<List<CategoryOutstandViewModel>> GetCategoryHot()
         {
             List<CategoryOutstandViewModel> array = new List<CategoryOutstandViewModel>();
+            string cacheKey = $"GetHots";
+            object cache_Payload;
+
             try
             {
+                var hitCached = _ICachingExtension.TryGetCache(out cache_Payload, cacheKey);
+                if (hitCached)
+                {
+                    var responseCache = JsonConvert.DeserializeObject<List<CategoryOutstandViewModel>>((string)cache_Payload);
+
+
+                    return responseCache;
+                }
                 using (HttpClient httpClient = new HttpClient())
                 {
                     httpClient.BaseAddress = new Uri(_api);
@@ -64,7 +79,8 @@ namespace Project.Proxy
                             array.Add(newObj);
                         }
                     }
-
+                    string dataJson = JsonConvert.SerializeObject(array);
+                    _ICachingExtension.SetCache(cacheKey, dataJson, 1 * 60);
 
                     return array;
 

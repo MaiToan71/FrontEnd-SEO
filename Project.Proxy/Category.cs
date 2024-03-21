@@ -1,4 +1,6 @@
-﻿using Project.Proxy.Interfaces;
+﻿using Newtonsoft.Json;
+using Project.Caching.Interfaces;
+using Project.Proxy.Interfaces;
 using Project.Proxy.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -6,21 +8,34 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Project.Proxy
 {
     public class Category : ICategory
     {
         private readonly string _api;
-        public Category(string api)
+        private readonly ICachingExtension _ICachingExtension;
+        public Category(string api, ICachingExtension ICachingExtension)
         {
             _api = api;
+            _ICachingExtension = ICachingExtension;
         }
         public async Task<CategoryViewModel> GetCategory(int id)
         {
             var category = new CategoryViewModel();
+            string cacheKey = $"GetCategory_{id}";
+            object cache_Payload;
             try
             {
+                var hitCached = _ICachingExtension.TryGetCache(out cache_Payload, cacheKey);
+                if (hitCached)
+                {
+                    var responseCache = JsonConvert.DeserializeObject<CategoryViewModel>((string)cache_Payload);
+
+
+                    return responseCache;
+                }
                 using (HttpClient httpClient = new HttpClient())
                 {
                     httpClient.BaseAddress = new Uri(_api);
@@ -81,6 +96,8 @@ namespace Project.Proxy
                     }
 
 
+                    string dataJson = JsonConvert.SerializeObject(category);
+                    _ICachingExtension.SetCache(cacheKey, dataJson, 1 * 60);
                     return category;
 
                 }

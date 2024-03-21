@@ -1,4 +1,6 @@
-﻿using Project.Proxy.Interfaces;
+﻿using Newtonsoft.Json;
+using Project.Caching.Interfaces;
+using Project.Proxy.Interfaces;
 using Project.Proxy.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,15 +14,28 @@ namespace Project.Proxy
     public class Banner : IBanner
     {
         private readonly string _api;
-        public Banner(string api)
+        private readonly ICachingExtension _ICachingExtension;
+        public Banner(string api,  ICachingExtension ICachingExtension)
         {
+            _ICachingExtension = ICachingExtension;
             _api = api;
         }
         public async Task<List<BannerViewModel>> GetHomeBanner()
         {
             List<BannerViewModel> array = new List<BannerViewModel>();
+            string cacheKey = $"GetBanners";
+            object cache_Payload;
             try
             {
+
+                var hitCached = _ICachingExtension.TryGetCache(out cache_Payload, cacheKey);
+                if (hitCached)
+                {
+                    var responseCache = JsonConvert.DeserializeObject<List<BannerViewModel>>((string)cache_Payload);
+
+
+                    return responseCache;
+                }
                 using (HttpClient httpClient = new HttpClient())
                 {
                     httpClient.BaseAddress = new Uri(_api);
@@ -42,7 +57,8 @@ namespace Project.Proxy
                             array.Add(newObj);
                         }
                     }
-
+                    string dataJson = JsonConvert.SerializeObject(array);
+                    _ICachingExtension.SetCache(cacheKey, dataJson, 1 * 60);
 
                     return array;
 

@@ -1,6 +1,11 @@
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Project.Caching;
+using Project.Caching.Interfaces;
 using Project.Proxy;
 using Project.Proxy.Interfaces;
+using System.IO.Compression;
 
 namespace Project.FrontEnd
 {
@@ -21,13 +26,43 @@ namespace Project.FrontEnd
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //Proxy
-            builder.Services.AddSingleton<IMenu>(l => new Menu(api));
-            builder.Services.AddSingleton<IBanner>(l => new Banner(api));
-            builder.Services.AddSingleton<IHot>(l => new Hot(api));
-            builder.Services.AddSingleton<ICategory>(l => new Category(api));
-            builder.Services.AddSingleton<IDetail>(l => new Detail(api));
+            builder.Services.AddSingleton<IMenu>(l => new Menu(api,new CachingExtension(new Caching.Caching())));
+            builder.Services.AddSingleton<IBanner>(l => new Banner(api, new CachingExtension(new Caching.Caching())));
+            builder.Services.AddSingleton<IHot>(l => new Hot(api, new CachingExtension(new Caching.Caching())));
+            builder.Services.AddSingleton<ICategory>(l => new Category(api, new CachingExtension(new Caching.Caching())));
+            builder.Services.AddSingleton<IDetail>(l => new Detail(api, new CachingExtension(new Caching.Caching())));
             builder.Services.AddSingleton<ICustomer>(l => new Customer(api));
 
+            builder.Services.AddResponseCompression(options =>
+            {
+                IEnumerable<string> MimeTypes = new[]
+                 {
+                     // General
+                     "text/plain",
+                     "text/html",
+                     "text/css",
+                     "font/woff2",
+                     "application/javascript",
+                     "image/x-icon",
+                     "image/png",
+                     "image/svg+xml",
+                     "text/javascript"
+                 };
+
+                options.EnableForHttps = true;
+                options.MimeTypes = MimeTypes;
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+            });
+            builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+
+            builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.SmallestSize;
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -39,9 +74,25 @@ namespace Project.FrontEnd
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                 ForwardedHeaders.XForwardedProto
+            });
+            app.UseStatusCodePagesWithRedirects("/Error");
 
+            const string cacheMaxAge = "86400";
+            app.UseStaticFiles(
+                new StaticFileOptions()
+                {
+                    OnPrepareResponse = ctx =>
+                    {
+                        ctx.Context.Response.Headers.TryAdd("Cache-Control", $"public, max-age={cacheMaxAge}");
+                    }
+                });
+
+            app.UseResponseCompression();
             app.UseRouting();
-
             app.UseAuthorization();
             app.UseSession();
             app.MapControllerRoute(
