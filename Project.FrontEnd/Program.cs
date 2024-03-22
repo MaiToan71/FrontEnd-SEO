@@ -1,8 +1,10 @@
+
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Project.Caching;
 using Project.Caching.Interfaces;
+using Project.FrontEnd.Sitemaps;
 using Project.Proxy;
 using Project.Proxy.Interfaces;
 using System.IO.Compression;
@@ -13,7 +15,6 @@ namespace Project.FrontEnd
     {
         public static void Main(string[] args)
         {
-          
 
             var builder = WebApplication.CreateBuilder(args);
             Microsoft.Extensions.Configuration.ConfigurationManager configuration = builder.Configuration; // allows both to access and to set up the config
@@ -63,7 +64,17 @@ namespace Project.FrontEnd
             {
                 options.Level = CompressionLevel.SmallestSize;
             });
+
+            // my unique extension method for sitemap information
+            builder.Services.AddSitemap();
+            builder.Services.AddOutputCache(options => {
+                options.AddPolicy("sitemap", b => b.Expire(TimeSpan.FromSeconds(1)));
+            });
+
+
+
             var app = builder.Build();
+          //  app.UseXMLSitemap();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -79,7 +90,12 @@ namespace Project.FrontEnd
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor |
                  ForwardedHeaders.XForwardedProto
             });
-            app.UseStatusCodePagesWithRedirects("/Error");
+
+            app.MapSitemap().CacheOutput("sitemap");
+
+           
+
+            app.UseStatusCodePagesWithRedirects("/Home/Error");
 
             const string cacheMaxAge = "86400";
             app.UseStaticFiles(
