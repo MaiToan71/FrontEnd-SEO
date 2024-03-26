@@ -33,6 +33,7 @@ namespace Project.FrontEnd
             builder.Services.AddSingleton<ICategory>(l => new Category(api, new CachingExtension(new Caching.Caching())));
             builder.Services.AddSingleton<IDetail>(l => new Detail(api, new CachingExtension(new Caching.Caching())));
             builder.Services.AddSingleton<ICustomer>(l => new Customer(api));
+            builder.Services.AddSingleton<IProduct>(l => new Product(api, new CachingExtension(new Caching.Caching())));
 
             builder.Services.AddResponseCompression(options =>
             {

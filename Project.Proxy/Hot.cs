@@ -24,7 +24,7 @@ namespace Project.Proxy
         public async Task<List<CategoryOutstandViewModel>> GetCategoryHot()
         {
             List<CategoryOutstandViewModel> array = new List<CategoryOutstandViewModel>();
-            string cacheKey = $"GetHots";
+            string cacheKey = $"GetCategoryHot";
             object cache_Payload;
 
             try
@@ -70,7 +70,7 @@ namespace Project.Proxy
                                     {
                                         Id = p.id,
                                         Title = p.title,
-                                        SeoAlias = $"/{Extenstion.ConvertStringToSlug(productName, productId)}",
+                                        SeoAlias = $"/{p.seoAlias}.html",
                                     };
                                     products.Add(product);
                                 }
@@ -96,8 +96,18 @@ namespace Project.Proxy
         public async Task<List<ProductViewModel>> GetHot()
         {
             List<ProductViewModel> array = new List<ProductViewModel>();
+            string cacheKey = $"GetProductHot";
+            object cache_Payload;
             try
             {
+                var hitCached = _ICachingExtension.TryGetCache(out cache_Payload, cacheKey);
+                if (hitCached)
+                {
+                    var responseCache = JsonConvert.DeserializeObject<List<ProductViewModel>>((string)cache_Payload);
+
+
+                    return responseCache;
+                }
                 using (HttpClient httpClient = new HttpClient())
                 {
                     httpClient.BaseAddress = new Uri(_api);
@@ -137,7 +147,8 @@ namespace Project.Proxy
                             array.Add(newObj);
                         }
                     }
-
+                    string dataJson = JsonConvert.SerializeObject(array);
+                    _ICachingExtension.SetCache(cacheKey, dataJson, 1 * 60);
 
                     return array;
 

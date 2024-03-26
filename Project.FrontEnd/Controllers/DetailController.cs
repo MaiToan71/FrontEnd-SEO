@@ -11,10 +11,10 @@ namespace Project.FrontEnd.Controllers
         {
             _detail = detail;
         }
-        [Route("{slug}-{id}")]
-        public async Task<IActionResult> Index(string slug, int id)
+        [Route("{slug}.html")]
+        public async Task<IActionResult> Index(string slug)
         {
-            var data = await _detail.GetProductDetail(id);
+            var data = await _detail.GetProductDetail(slug);
             return View(data);
         }
     }

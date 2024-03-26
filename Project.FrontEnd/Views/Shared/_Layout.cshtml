@@ -9,7 +9,7 @@
     <title>@ViewData["Title"]</title>
     <meta name=description content="@ViewData["Description"]">
     <meta name=keywords content="@Configuration.GetSection("SEO")["keywords"]">
-   
+
     <meta charset=utf-8>
     <meta name=Language content=vi>
     <meta http-equiv=X-UA-Compatible content="IE=edge">
@@ -50,9 +50,17 @@
 
         gtag('config', 'G-WF2WDPWK69');
     </script>
+
 </head>
 <body>
+
+  
     <header>
+        <div style="text-align:center;width:100%">
+            <a href="https://www.messenger.com/t/107400932131986" target="_blank" style="    text-decoration: none;
+    color: red;
+    font-weight: bold; ">Đăng ký Thi Bằng Lái Xe A1,A2 Tại Hà Nội !!!</a>
+       </div>
         @await Component.InvokeAsync("Menu")
 
 
@@ -81,11 +89,22 @@
             </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/swiper/swiper-bundle.min.js"></script>
     <script src="~/js/swiper.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $('#basic-addon2').click(function () {
+            window.open(`/tra-cuu-ho-so?cmnd=` + $('#searching').val(), '_blank').focus();
+        });
+        $("#searching").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open(`/tra-cuu-ho-so?cmnd=` + $('#searching').val(), '_blank').focus();
+            }
+        });
+    </script>
 </body>
 </html>

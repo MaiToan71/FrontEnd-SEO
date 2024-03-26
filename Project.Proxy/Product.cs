@@ -8,30 +8,30 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Project.Proxy
 {
-    public class Category : ICategory
+    public class Product : IProduct
     {
         private readonly string _api;
         private readonly ICachingExtension _ICachingExtension;
-        public Category(string api, ICachingExtension ICachingExtension)
+        public Product(string api, ICachingExtension ICachingExtension)
         {
-            _api = api;
             _ICachingExtension = ICachingExtension;
+            _api = api;
         }
-        public async Task<CategoryViewModel> GetCategory(int id)
+        public async Task<ResponsePaging> GetAllPagingProduct(int page, int size)
         {
-            var category = new CategoryViewModel();
-            string cacheKey = $"GetCategory_{id}";
+            var responsePaging = new ResponsePaging();
+            var products = new List<ProductViewModel>();
+            string cacheKey = $"GetAllPagingProduct_{page}_{size}";
             object cache_Payload;
             try
             {
                 var hitCached = _ICachingExtension.TryGetCache(out cache_Payload, cacheKey);
                 if (hitCached)
                 {
-                    var responseCache = JsonConvert.DeserializeObject<CategoryViewModel>((string)cache_Payload);
+                    var responseCache = JsonConvert.DeserializeObject<ResponsePaging>((string)cache_Payload);
 
 
                     return responseCache;
@@ -41,28 +41,12 @@ namespace Project.Proxy
                     httpClient.BaseAddress = new Uri(_api);
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    string url = $"api/publish/category/{id}";
+                    string url = $"api/publish/product?PageIndex={page}&PageSize={size}";
                     var responseMessage = await httpClient.GetAsync(url);
                     if (responseMessage.IsSuccessStatusCode)
                     {
                         var response = await responseMessage.Content.ReadAsAsync<dynamic>();
-                        List<ImageViewModel> images = new List<ImageViewModel>();
-                        List<ProductViewModel> products = new List<ProductViewModel>();
-                        category.Name = response.name;
-                        category.Description = response.description;
-                        category.Body = response.note;
-                        foreach(var i in response.banners)
-                        {
-                            var newImage = new ImageViewModel()
-                            {
-                                Id = i.id,
-                                Name = i.caption,
-                                Path = i.imagePath
-                            };
-                            images.Add(newImage);
-                        }
-                        category.Images = images;
-                        foreach(var p in response.products)
+                        foreach (var p in response.items)
                         {
                             List<ImageViewModel> productImages = new List<ImageViewModel>();
                             int productId = p.id;
@@ -72,6 +56,7 @@ namespace Project.Proxy
                                 Id = p.id,
                                 Title = p.title,
                                 DateCreated = p.dateCreated,
+                                DateUpdated= p.dateUpdated,
                                 Description = p.description,
                                 SeoAlias = $"/{p.seoAlias}.html"
                             };
@@ -92,20 +77,21 @@ namespace Project.Proxy
                             products.Add(product);
 
                         }
-                        category.Products = products;
+                        responsePaging.Total = response.totalRecord;
+                        responsePaging.Data = products;
                     }
 
 
-                    string dataJson = JsonConvert.SerializeObject(category);
+                    string dataJson = JsonConvert.SerializeObject(responsePaging);
                     _ICachingExtension.SetCache(cacheKey, dataJson, 1 * 60);
-                    return category;
+                    return responsePaging;
 
                 }
             }
             catch (Exception ex)
             {
 
-                return category;
+                return responsePaging;
             }
         }
     }

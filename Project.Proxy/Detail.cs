@@ -21,12 +21,12 @@ namespace Project.Proxy
             _api = api;
             _ICachingExtension = ICachingExtension;
         }
-        public async Task<ProductViewModel> GetProductDetail(int productId)
+        public async Task<ProductViewModel> GetProductDetail(string slug)
         {
             var detail = new ProductViewModel();
             try
             {
-                string cacheKey = $"GetProductDetail_{productId}";
+                string cacheKey = $"GetProductDetail_{slug}";
                 object cache_Payload;
                 var hitCached = _ICachingExtension.TryGetCache(out cache_Payload, cacheKey);
                 if (hitCached)
@@ -41,7 +41,7 @@ namespace Project.Proxy
                     httpClient.BaseAddress = new Uri(_api);
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    string url = $"api/publish/product/detail/{productId}";
+                    string url = $"api/publish/product/detail/{slug}";
                     var responseMessage = await httpClient.GetAsync(url);
                     if (responseMessage.IsSuccessStatusCode)
                     {

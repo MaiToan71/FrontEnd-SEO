@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Project.Proxy.Interfaces
 {
-    public interface IDetail
+    public interface IProduct
     {
-        Task<ProductViewModel> GetProductDetail (string slug);
+        public Task<ResponsePaging> GetAllPagingProduct(int page, int size);
     }
 }

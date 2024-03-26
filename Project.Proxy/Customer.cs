@@ -73,6 +73,57 @@ namespace Project.Proxy
             }
         }
 
+        public async Task<List<CustomerCalendarViewModel>> GetCustomerInCalenar(string cmnd)
+        {
+            List<CustomerCalendarViewModel> data = new List<CustomerCalendarViewModel>();
+
+
+            try
+            {
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(_api);
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    string url = $"/api/CustomerDates/searching?cmnd={cmnd}&PageIndex=1&PageSize=100";
+                    var responseMessage = await httpClient.GetAsync(url);
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        var response = await responseMessage.Content.ReadAsAsync<dynamic>();
+                        foreach (var item in response.items)
+                        {
+                            var c = new CustomerCalendarViewModel()
+                            {
+                                HoVaTen = item.hoVaTen,
+                                GioiTinh = item.gioiTinh,
+                                NgayThangNamSinh = item.ngayThangNamSinh,
+                                SoCMND = item.soCMND,
+                                NoiCuTru = item.noiCuTru,
+                                GiayChungNhanSucKhoe = item.giayChungNhanSucKhoe,
+                                DaCoGiayPhepLaiXeHang = item.daCoGiayPhepLaiXeHang,
+                                DaCoGiayPhepLaiXeSo = item.daCoGiayPhepLaiXeSo,
+                                DaCoGiayPhepLaiXeNgayTrung = item.daCoGiayPhepLaiXeNgayTrung,
+                                PhanKhaiSoKmLaiXeAnToan = item.phanKhaiSoKmLaiXeAnToan,
+                                SoChungChiNgheHoacGiay = item.soChungChiNgheHoacGiay,
+                                LopKhoa = item.lopKhoa,
+                                HangDuSatHach = item.hangDuSatHach,
+                                GhiChu = item.ghiChu,
+                                NgayThi = item.ngayThi,
+                            };
+                            data.Add(c);
+                        }
+                     
+                    }
+
+                    return data;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return data;
+            }
+        }
         public async Task<ResponseLoginViewModel> Login(LoginViewModel request)
         {
             var customer = new ResponseLoginViewModel();
