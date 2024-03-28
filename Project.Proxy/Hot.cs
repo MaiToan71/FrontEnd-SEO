@@ -129,7 +129,7 @@ namespace Project.Proxy
                                 Body = i.body,
                                 Title = i.title,
                                 ViewCount= i.viewCount,
-                                SeoAlias = $"/{Extenstion.ConvertStringToSlug(productName, productId)}",
+                                SeoAlias = $"/{i.seoAlias}.html",
                                 Description = i.description
                             };
                             

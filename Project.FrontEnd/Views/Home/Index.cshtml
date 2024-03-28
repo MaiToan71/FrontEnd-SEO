@@ -9,98 +9,170 @@
     ViewData["Imags"] = @Configuration.GetSection("Domain")["FrontEnd"] + "/imgs/default.jpg";
 }
 
-<div>
-    @await Component.InvokeAsync("HomeBanner")
-</div>
-<div class="container">
-    <main role="main" class="pb-3">
-        <div class="mt-5">
-            <h3>TRUNG TÂM ĐÀO TẠO BẰNG LÁI XE HÀ NỘI</h3>
-            <p>Trung tâm thi bằng lái xe Hà Nội được thành lập 12/3/2009. Luôn đi đầu trong công tác đào tạo và tổ chức thi giấy phép lái xe, trung tâm đạt rất nhiều thành tích đáng nổi bật. Hàng tháng trung tâm tiếp nhận từ 1800-2000 học viên với tỉ lệ đỗ trên 90%. Với nhiều năm đạt thành tích xuất sắc cùng với nhiều giải thưởng cao quý trong công tác giảng dạy, chúng tôi tự tin giúp các bạn học viên có được tấm bằng lái xe một cách nhanh chóng và hiệu quả nhất.</p>
-            <p>Trung tâm từ chối tiếp nhận bất cứ trường hợp mua bán bằng trái phép, vì nếu không đi thi, không ôn luyện đều là bằng giả, có thể xử lý hình sự nếu gây hậu quả nghiêm trọng.</p>
-            <p>Thi đỗ học viên sẽ được nhận bằng lái xe + hồ sơ gốc qua dịch vụ công Bưu điện liên kết với sở GTVT, bưu kiện sẽ được gửi về nhà sau 7-10 ngày làm việc .</p>
-        </div>
-        <div class="mt-5">
-            <h3>CÁC KHÓA HỌC LÁI XE (TỔ CHỨC LIÊN TỤC TRONG THÁNG)</h3>
-            <div class="mt-5">
-                @await Component.InvokeAsync("ProductHot")
+
+<!-- Banner Section Begin -->
+<section class="banner spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-4">
+                <div class="banner__item">
+                    <div class="banner__item__pic" style="display:flex;justify-content:end">
+                        <img src="imgs/434195815_385530334330954_2334368287895997306_n.jpg" style="width:80%" />
+                    </div>
+                    <div class="banner__item__text">
+                        <h2>Quá trình thi của học viên</h2>
+                        <a href="#">Đăng ký</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="mt-5">
-            <h3>CÁC CON SỐ VỀ THI BẰNG LÁI XE MÁY</h3>
-            <div class="row mt-5">
-                <div class="col-md-3 col-sm-6">
-                    <div class="d-flex justify-content-center ">
-                        <img src="/imgs/student.png" class="" loading="lazy" alt="student" width="120" width="80" height="80" />
+            <div class="col-lg-5">
+                <div class="banner__item banner__item--middle">
+                    <div class="banner__item__pic">
+                        <img src="imgs/432768353_385530277664293_9136543427643120501_n.jpg" />
                     </div>
-                    <p class="text-center">150 NGƯỜI</p>
-                    <p class="text-center">SỐ LƯỢNG THÍ SINH 1 BUỔI THI</p>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="d-flex justify-content-center ">
-                        <img src="/imgs/deadline-1.png" alt="deadline" loading="lazy" width="80" height="80" />
-                    </div>
-                    <div class="text-center">
-                        <p>7 NGÀY</p>
-                        <p>THI XONG, 7 NGÀY SAU CÓ BẰNG</p>
+                    <div class="banner__item__text">
+                        <h2>Hình ảnh thi thực tế</h2>
+                        <a href="#">Đăng ký</a>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="d-flex justify-content-center ">
-                        <img src="/imgs/speaker.png" alt="speaker" loading="lazy" width="80" height="80" />
+            </div>
+            <div class="col-lg-7">
+                <div class="banner__item banner__item--last">
+                    <div class="banner__item__pic" style="display:flex;justify-content:end">
+                        <img src="imgs/434161250_385530364330951_6735995482600913686_n.jpg" style="width:80%" />
                     </div>
-                    <div class="text-center">
-                        <p>2 GIỜ</p>
-                        <p>THỜI GIAN KÉO DÀI BUỔI THI</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="d-flex justify-content-center ">
-                        <img src="/imgs/book-1.png" alt="book" loading="lazy" width="80" height="80" />
-                    </div>
-                    <div class="text-center">
-                        <p>14 BUỔI / THÁNG</p>
-                        <p>HÀNG THÁNG CÓ 15 NGÀY THI</p>
+                    <div class="banner__item__text">
+                        <h2>Hồ sơ đăng ký thành công</h2>
+                        <a href="#">Đăng ký</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mt-5">
-            <h3>TẠI SAO NÊN CHỌN CHÚNG TÔI</h3>
-            <div class="row mt-5">
-                <div class="col-sm-6 d-flex">
-                    <img src="/imgs/motobike.jpg" class="" width="80" alt="motobike" height="80" loading="lazy" />
+    </div>
+</section>
+<!-- Banner Section End -->
 
-                    <div class="ml-5">
-                        <p>BẰNG THẬT</p>
-                        <p>100% bằng lái xe là bằng thật, có hồ sơ gốc trả cho bạn lưu trữ, nên các bạn yên tâm về chiếc bằng lái xe của mình.</p>
+<!-- Categories Section Begin -->
+<section class="categories spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="categories__text">
+                    <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories__hot__deal">
+                    <img src="img/product-sale.png" alt="">
+                    <div class="hot__deal__sticker">
+                        <span>Sale Of</span>
+                        <h5>$29.99</h5>
                     </div>
                 </div>
-                <div class="col-sm-6 d-flex">
-                    <img src="/imgs/motobike.jpg" alt="motobike" class="" width="80" height="80" loading="lazy" />
-
-                    <div class="ml-5">
-                        <p>ĐĂNG KÝ NHANH GỌN/p>
-                        <p>Đăng kí nhanh chóng, dễ dàng, bạn có thể qua Trung tâm hoặc có nhân viên đến nhà bạn làm hồ sơ.</p>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+                <div class="categories__deal__countdown">
+                    <span>Deal Of The Week</span>
+                    <h2>Multi-pocket Chest Bag Black</h2>
+                    <div class="categories__deal__countdown__timer" id="countdown">
+                        <div class="cd-item">
+                            <span>3</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>1</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>50</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>18</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                    <a href="#" class="primary-btn">Shop now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+<!-- Instagram Section Begin -->
+<section class="instagram spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="instagram__pic">
+                    <div class="instagram__pic__item set-bg" data-setbg="imgs/nhom-thi-1.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="imgs/nhom-thi-2.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="imgs/nhom-thi-3.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="imgs/nhom-thi-5.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="imgs/nhom-thi-6.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="imgs/nhom-thi-8.jpg"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="instagram__text">
+                    <h2>Facebook</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.
+                    </p>
+                    <h3>
+                        #blxa1 #gplx #thibanglaixetaihanoi #thibanglaixea1hanoi #blx #thibanglaixea2
+                        #trungtam
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Instagram Section End -->
+<!-- Latest Blog Section Begin -->
+<section class="latest spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Tin tức</span>
+                    <h2>Thông tin lịch thi hằng ngày</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg"></div>
+                    <div class="blog__item__text">
+                        <span><img src="img/icon/calendar.png" alt=""> 16 February 2020</span>
+                        <h5>What Curling Irons Are The Best Ones</h5>
+                        <a href="#">Read More</a>
                     </div>
                 </div>
-                <div class="col-sm-6 d-flex  mt-4">
-                    <img src="/imgs/motobike.jpg" class="" alt="motobike" width="80" height="80" loading="lazy" />
-
-                    <div class="ml-5">
-                        <p>ĐỘI NGŨ GIÁO VIÊN GIỎI</p>
-                        <p>Đội ngũ giáo viên có kĩ năng giỏi, nhiệt tình. Cam kết hỗ trợ tối đa để bạn có được chiếc bằng lái xe.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-2.jpg"></div>
+                    <div class="blog__item__text">
+                        <span><img src="img/icon/calendar.png" alt=""> 21 February 2020</span>
+                        <h5>Eternity Bands Do Last Forever</h5>
+                        <a href="#">Read More</a>
                     </div>
                 </div>
-                <div class="col-sm-6 d-flex  mt-4">
-                    <img src="/imgs/motobike.jpg" class="" alt="motobike" width="80" height="80" loading="lazy" />
-
-                    <div class="ml-5">
-                        <p>KHÁCH HÀNG HÀI LÒNG</p>
-                        <p>Với phương châm lấy sự uy tín lên hàng đầu, Trung tâm cam kết sẽ làm hài lòng tất cả các bạn đến Trung tâm đăng kí.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-3.jpg"></div>
+                    <div class="blog__item__text">
+                        <span><img src="img/icon/calendar.png" alt=""> 28 February 2020</span>
+                        <h5>The Health Benefits Of Sunglasses</h5>
+                        <a href="#">Read More</a>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-</div>
+    </div>
+</section>
+<!-- Latest Blog Section End -->

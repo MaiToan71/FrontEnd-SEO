@@ -1,3 +1,4 @@
+
 html {
   font-size: 14px;
 }
@@ -76,7 +77,7 @@ a.plain {
 }
 
 ul.navbar-nav {
-    margin-top: -15px;
+    text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,6 +87,48 @@ ul.navbar-nav {
     font-weight: bold;
 }
 
+.button-footer-left {
+    position: fixed;
+    bottom: 8%;
+    left: 40px;
+    z-index: 999999;
+    background-color: red;
+    width: 80px;
+    height: 80px;
+    font-size: 13px;
+    text-align: center;
+    padding: 16px;
+    border-radius: 100%;
+    margin-left: 9px;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.button-footer-right {
+    position: fixed;
+    bottom: 8%;
+    right: 40px;
+    z-index: 999999;
+    background-color: red;
+    width: 80px;
+    height: 80px;
+    font-size: 13px;
+    text-align: center;
+    padding: 16px;
+    border-radius: 100%;
+    margin-left: 9px;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.footer-mt {
+    bottom: 20%;
+}
+
+.button-footer-left a, .button-footer-right a {
+    color: white !important;
+    text-decoration: none !important;
+}
 @media only screen and (max-width: 600px) {
     .navbar-brand h1 {
     }
@@ -97,5 +140,8 @@ ul.navbar-nav {
     .div-navbar-toggle{
         display:flex;justify-content:end;
         width:100%;
+    }
+    .website{
+        display:none
     }
 }

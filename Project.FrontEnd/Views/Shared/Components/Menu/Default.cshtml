@@ -4,52 +4,12 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @model List<MenuViewModel>
 
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-3">
-    <div class="container-fluid">
-       <div class="container container-menu ">
-            <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="Index">
-                <h1>TRUNG TÂM THI BẰNG LÁI XE <br />TẠI HÀ NỘI</h1>
-            </a>
-            <div class="div-navbar-toggle">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-           </div>
-            <div class="navbar-collapse collapse d-sm-inline-flex ">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link " href="/">Trang chủ</a>
-                    </li>
-                    @{
-                        foreach (var m in Model)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link " href="/danh-muc/@m.Slug">@m.Name</a>
-                            </li>
+<nav class="header__menu mobile-menu">
+    <ul>
 
-                        }
-                    }
-                    <li class="nav-item">
-                        <a class="nav-link " href="/tra-cuu-ho-so">Tra cứu hồ sơ</a>
-                    </li>
-                    @if (string.IsNullOrEmpty(@HttpContextAccessor.HttpContext.Session.GetString("_customerid")))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link " href="/register">Đăng ký</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="/login">Đăng nhập</a>
-                        </li>
-                    }
-                    @if (!string.IsNullOrEmpty(@HttpContextAccessor.HttpContext.Session.GetString("_customerid")))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link " href="/login/logout"><span>@HttpContextAccessor.HttpContext.Session.GetString("_name")</span> Đăng xuất</a>
-                        </li>
-                    }
-                </ul>
-            </div>
-       </div>
-    </div>
+        @foreach (var m in Model)
+        {
+            <li class="">   <a href="/danh-muc/@m.Slug">@m.Name</a></li>
+        }
+    </ul>
 </nav>

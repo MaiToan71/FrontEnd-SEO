@@ -11,6 +11,7 @@ namespace Project.Proxy.Interfaces
     public interface ICustomer
     {
        Task<ResponseLoginViewModel> Login(LoginViewModel request);
+        Task<bool> Register(RegisterViewModel request);
         Task<CustomerViewModel> GetById(int id);
         Task<List<CustomerCalendarViewModel>> GetCustomerInCalenar(string cmnd);
     }

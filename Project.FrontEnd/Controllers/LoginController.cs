@@ -16,6 +16,8 @@ namespace Project.FrontEnd.Controllers
         {
             _customer = customer;
         }
+
+       
         public IActionResult Index()
         {
             return View();
@@ -29,8 +31,7 @@ namespace Project.FrontEnd.Controllers
         }
 
         [HttpPost]
-      [ValidateAntiForgeryToken]
-
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(LoginViewModel request)
         {
             ViewBag.error = "";
@@ -42,7 +43,7 @@ namespace Project.FrontEnd.Controllers
 
             }
             var user = await _customer.Login(request);
-            if (user.Status== false)
+            if (user.Status == false)
             {
                 ViewBag.error = user.Message;
                 return View();

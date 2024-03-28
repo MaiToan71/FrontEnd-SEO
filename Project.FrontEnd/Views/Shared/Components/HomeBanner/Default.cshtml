@@ -1,18 +1,26 @@
 ﻿@using Microsoft.Extensions.Configuration
 @using Project.Proxy.ViewModels
 @model List<BannerViewModel>;
-<!-- Swiper -->
-<div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-        @{
-            foreach (var m in Model)
-            {
-                <div class="swiper-slide">
-                    <img src="@m.Path" alt="@m.Name" class="img-fluid" loading="lazy" width="2000" height="250"/>
-                
-                </div>
-            }
-        }
 
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+        @foreach (var m in Model)
+        {
+            <div class="hero__items set-bg" data-setbg="@m.Path">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+                                <h6>@m.Name</h6>
+                                
+                                <a href="#" class="primary-btn">Tra cứu lịch thi<span class="arrow_right"></span></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-</div>
+
+</section>

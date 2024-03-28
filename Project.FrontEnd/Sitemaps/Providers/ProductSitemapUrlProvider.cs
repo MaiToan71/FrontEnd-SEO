@@ -48,6 +48,7 @@ namespace Project.FrontEnd.Sitemaps.Providers
                 Priority = 1,
                 LastModificationDate = DateTime.Now,
             });
+
             foreach ( var m in menus )
             {
                 string domain = $"{_configuration.GetValue<string>("Domain:FrontEnd")}/danh-muc/{m.Slug}";

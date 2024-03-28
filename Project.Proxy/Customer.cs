@@ -77,7 +77,6 @@ namespace Project.Proxy
         {
             List<CustomerCalendarViewModel> data = new List<CustomerCalendarViewModel>();
 
-
             try
             {
                 using (HttpClient httpClient = new HttpClient())
@@ -158,6 +157,32 @@ namespace Project.Proxy
             {
 
                 return customer;
+            }
+        }
+
+        public async Task<bool> Register(RegisterViewModel request)
+        {
+            try
+            {
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(_api);
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+                    string url = $"api/auths/register";
+                    var responseMessage = await httpClient.PostAsync(url, content);
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        return true;
+
+                    }
+
+                    return false;
+
+                }
+            }catch(Exception e)
+            {
+                return false;
             }
         }
     }
