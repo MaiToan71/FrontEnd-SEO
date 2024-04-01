@@ -49,29 +49,7 @@ h6 {
 	font-family: "Nunito Sans", sans-serif;
 }
 
-h1 {
-	font-size: 70px;
-}
 
-h2 {
-	font-size: 36px;
-}
-
-h3 {
-	font-size: 30px;
-}
-
-h4 {
-	font-size: 24px;
-}
-
-h5 {
-	font-size: 18px;
-}
-
-h6 {
-	font-size: 16px;
-}
 
 p {
 	font-size: 15px;
@@ -584,8 +562,6 @@ ol {
 }
 
 .hero__items {
-	height: 500px;
-	padding-top: 230px;
 }
 
 .hero__text h6 {
@@ -3802,8 +3778,6 @@ ol {
 	}
 	.hero__items {
 		height: auto;
-		padding-top: 130px;
-		padding-bottom: 40px;
 	}
 	.hero__text h2 {
 		font-size: 36px;

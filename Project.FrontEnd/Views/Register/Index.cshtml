@@ -5,53 +5,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container" style="max-width:600px">
-    @using (Html.BeginForm("Index", "Register", FormMethod.Post))
-    {
-        @if (!string.IsNullOrEmpty(ViewBag.error))
+   <div class="m-5">
+        @using (Html.BeginForm("Index", "Register", FormMethod.Post))
         {
-            <div class="alert alert-danger" role="alert">
-                @ViewBag.error
+            @if (!string.IsNullOrEmpty(ViewBag.error))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.error
+                </div>
+            }
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nhập CMND/CCCD </label>
+                @Html.TextBoxFor(m => m.Cmnd, "", new { @class = "form-control", @placeholder = "Nhập thông tin CMND" })
+
+            </div>
+            <div class="form-group mt-3">
+                <label for="exampleInputPassword1">Nhập mật khẩu đăng nhập</label>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Nhập thông tin mật khẩu" })
+            </div>
+            <div class="form-group mt-3">
+                <label for="exampleInputEmail1">Ngày cấp CMND/CCCD</label>
+                @Html.TextBoxFor(m => m.DateOfCmnd, "", new { @type = "date", @class = "form-control", @placeholder = "Nhập thông tin " })
+
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="exampleInputEmail1">Nhập họ và tên</label>
+                @Html.TextBoxFor(m => m.FullName, "", new { @class = "form-control", @placeholder = "Nhập thông tin " })
+
+            </div>
+            <div class="form-group mt-3">
+                <label for="exampleInputEmail1">Ngày tháng năm sinh</label>
+                @Html.TextBoxFor(m => m.DateOfBirth, "", new { @type = "date", @class = "form-control", @placeholder = "Nhập thông tin " })
+
+            </div>
+            <div class="form-group mt-3">
+                <label for="exampleInputEmail1">Nhập số điện thoại</label>
+                @Html.TextBoxFor(m => m.PhoneNumber, "", new { @type = "number", @class = "form-control", @placeholder = "Nhập thông tin " })
+
+            </div>
+            <div class="form-group mt-3">
+                <label for="exampleInputEmail1">Nhập địa chỉ</label>
+                @Html.TextBoxFor(m => m.Address, "", new { @class = "form-control", @placeholder = "Nhập thông tin " })
+
+            </div>
+
+            <div class="d-flex justify-content-center mt-3">
+                <button type="submit" class="btn btn-primary">Đăng ký</button>
             </div>
         }
-        <div class="form-group">
-            <label for="exampleInputEmail1">Nhập CMND/CCCD </label>
-            @Html.TextBoxFor(m => m.Cmnd, "", new { @class = "form-control", @placeholder = "Nhập thông tin CMND" })
-
-        </div>
-        <div class="form-group mt-3">
-            <label for="exampleInputPassword1">Nhập mật khẩu đăng nhập</label>
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Nhập thông tin mật khẩu" })
-        </div>
-        <div class="form-group mt-3">
-            <label for="exampleInputEmail1">Ngày cấp CMND/CCCD</label>
-            @Html.TextBoxFor(m => m.DateOfCmnd, "", new { @type = "date", @class = "form-control", @placeholder = "Nhập thông tin " })
-
-        </div>
-        
-        <div class="form-group mt-3">
-            <label for="exampleInputEmail1">Nhập họ và tên</label>
-            @Html.TextBoxFor(m => m.FullName, "", new { @class = "form-control", @placeholder = "Nhập thông tin " })
-
-        </div>
-        <div class="form-group mt-3">
-            <label for="exampleInputEmail1">Ngày tháng năm sinh</label>
-            @Html.TextBoxFor(m => m.DateOfBirth, "", new { @type = "date", @class = "form-control", @placeholder = "Nhập thông tin " })
-
-        </div>
-        <div class="form-group mt-3">
-            <label for="exampleInputEmail1">Nhập số điện thoại</label>
-            @Html.TextBoxFor(m => m.PhoneNumber, "", new {@type="number", @class = "form-control", @placeholder = "Nhập thông tin " })
-
-        </div>
-        <div class="form-group mt-3">
-            <label for="exampleInputEmail1">Nhập địa chỉ</label>
-            @Html.TextBoxFor(m => m.Address, "", new { @class = "form-control", @placeholder = "Nhập thông tin " })
-
-        </div>
-
-        <div class="d-flex justify-content-center mt-3">
-            <button type="submit" class="btn btn-primary">Đăng ký</button>
-        </div>
-    }
+   </div>
 </div>
 

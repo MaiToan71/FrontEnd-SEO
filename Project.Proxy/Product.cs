@@ -68,7 +68,7 @@ namespace Project.Proxy
                                     {
                                         Id = pimg.id,
                                         Name = pimg.caption,
-                                        Path = pimg.imagePath
+                                        Path = $"{_api}{pimg.imagePath}",
                                     });
                                     productImages.Add(pimg);
                                 }

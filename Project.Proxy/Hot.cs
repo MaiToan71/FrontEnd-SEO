@@ -130,7 +130,9 @@ namespace Project.Proxy
                                 Title = i.title,
                                 ViewCount= i.viewCount,
                                 SeoAlias = $"/{i.seoAlias}.html",
-                                Description = i.description
+                                Description = i.description,
+                                DateCreated = i.dateCreated,
+                                DateUpdated = i.dateUpdated,
                             };
                             
                             foreach(var img in i.images)

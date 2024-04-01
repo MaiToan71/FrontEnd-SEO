@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -48,21 +49,31 @@ namespace Project.Proxy
                         var response = await responseMessage.Content.ReadAsAsync<dynamic>();
                         List<ImageViewModel> images = new List<ImageViewModel>();
                         List<ProductViewModel> products = new List<ProductViewModel>();
-                        category.Name = response.name;
-                        category.Description = response.description;
-                        category.Body = response.note;
-                        foreach(var i in response.banners)
+                        if (response.name != null)
+                        {
+                            category.Name = response.name;
+                        }
+                        if (response.description != null)
+                        {
+                            category.Description = response.description;
+                        }
+                        if (response.note != null)
+                        {
+                            category.Body = response.note;
+                        }
+
+                        foreach (var i in response.banners)
                         {
                             var newImage = new ImageViewModel()
                             {
                                 Id = i.id,
                                 Name = i.caption,
-                                Path = i.imagePath
+                                Path = $"{_api}{i.imagePath}",
                             };
                             images.Add(newImage);
                         }
                         category.Images = images;
-                        foreach(var p in response.products)
+                        foreach (var p in response.products)
                         {
                             List<ImageViewModel> productImages = new List<ImageViewModel>();
                             int productId = p.id;
@@ -83,7 +94,7 @@ namespace Project.Proxy
                                     {
                                         Id = pimg.id,
                                         Name = pimg.caption,
-                                        Path = pimg.imagePath
+                                        Path = $"{_api}{pimg.imagePath}",
                                     });
                                     productImages.Add(pimg);
                                 }

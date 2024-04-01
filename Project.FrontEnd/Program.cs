@@ -7,6 +7,7 @@ using Project.Caching.Interfaces;
 using Project.FrontEnd.Sitemaps;
 using Project.Proxy;
 using Project.Proxy.Interfaces;
+using Serilog;
 using System.IO.Compression;
 
 namespace Project.FrontEnd
@@ -23,6 +24,9 @@ namespace Project.FrontEnd
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddSession();
+
+            builder.Host.UseSerilog((hostingContext, loggerConfig) =>
+            loggerConfig.ReadFrom.Configuration(hostingContext.Configuration));
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -80,7 +84,7 @@ namespace Project.FrontEnd
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
-                app.UseExceptionHandler("/Home/Error");
+               // app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -96,7 +100,7 @@ namespace Project.FrontEnd
 
            
 
-            app.UseStatusCodePagesWithRedirects("/Home/Error");
+          //  app.UseStatusCodePagesWithRedirects("/Home/Error");
 
             const string cacheMaxAge = "86400";
             app.UseStaticFiles(

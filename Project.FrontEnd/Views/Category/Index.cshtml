@@ -8,73 +8,113 @@
     ViewData["Description"] = @Model.Description;
     ViewData["Imags"] = @Configuration.GetSection("Domain")["FrontEnd"] + "/imgs/default.jpg";
 }
-<style>
-    thead,
-    tbody,
-    tfoot,
-    tr,
-    td,
-    th {
-        border-width :1px;
-       
-       
-    }
 
-</style>
-<div>
-    @await Component.InvokeAsync("HomeBanner")
-</div>
-<div class="container mt-5">
-    <main role="main" class="pb-3">
+
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+        @if (Model.Images.Count() > 0)
+        {
+            @foreach (var m in Model.Images)
+            {
+                <div class="hero__items set-bg">
+
+                    <img class="lazyload img-fluid" src="@m.Path" height="600" width="1200" />
+                   
+                </div>
+            }   }
+    </div>
+
+</section>
+
+<section class="breadcrumb-option">
+    <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
-                    </ol>
-                </nav>
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>@Model.Name</h4>
+                    <div class="breadcrumb__links">
+                        <a href="/">Trang chủ</a>
+                        <span>@Model.Name</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                <nav class="category-detail">
-                  <div>
-                        @Html.Raw(Model.Body)
-                  </div>
-                </nav>
-                <nav class="products ">
-                    @foreach(var p in @Model.Products)
+<!-- Latest Blog Section Begin -->
+<section class="latest mt-5">
+    <div class="container">
+        @if (!string.IsNullOrEmpty(Model.Body))
+        {
+            <div class="row row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__details__content">
+                        <div class="blog__details__share">
+                            <span>Theo dõi</span>
+                            <ul>
+                                <li><a href="https://www.facebook.com/thiblxgiaree"><i class="fa fa-facebook"></i></a></li>
+
+                                <li><a href="https://www.messenger.com/t/107400932131986"><img src="~/malefashion/img/icon/messenger (1).png" height="20" width="20" loading="lazy" style="color:white" /></a></li>
+                            </ul>
+                        </div>
+                        <div class="blog__details__text">
+                            @if (!string.IsNullOrEmpty(Model.Body))
+                            {
+                                @Html.Raw(Model.Body)
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+        @if (Model.Products != null)
+        {
+            @if (Model.Products.Count() > 0)
+            {
+                @if (!string.IsNullOrEmpty(Model.Body))
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title">
+                                <span>Tin tức</span>
+                                <h2>Bài viết liên quan</h2>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="row">
+
+                    @foreach (var p in @Model.Products)
                     {
-                        <a href="@p.SeoAlias" class="plain">
-
-                        <div class="row mt-3">
-                           <div class="col-sm-12 col-md-4">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="blog__item">
                                 @if (p.Images.Count() == 0)
                                 {
-
-                                        <img class="card-img-top" src="/imgs/default.jpg" alt="@p.Title" height="150" width="90" name="@p.Title" loading="lazy">
+                                    <div class="blog__item__pic set-bg" data-setbg="/imgs/default.jpg"></div>
                                 }
                                 @if (p.Images.Count() > 0)
                                 {
                                     var image = p.Images.First();
-                                        <img class="card-img-top" src="@image.Path" alt="@image.Name" height="150" width="90" name="@p.Title" loading="lazy">
+                                    <div class="blog__item__pic set-bg" data-setbg="@image.Path"></div>
                                 }
-                           </div>
-                            <div class="col-sm-12 col-md-8">
-                                <p>@p.Title</p>
-                                <span>@p.DateCreated</span>
-                                <p>@p.Description</p>
+                                <div class="blog__item__text">
+                                    <span>
+                                        <img src="~/malefashion/img/icon/calendar.png" />
+                                        @p.DateCreated.ToString("dd-MM-yyyy")
+                                    </span>
+                                    <h5>@p.Title</h5>
+                                    <a href="@p.SeoAlias">Tìm hiểu thêm</a>
+                                </div>
                             </div>
                         </div>
-                        </a>
-
                     }
-               
-                </nav>
-                
+                </div>
+            }
+        }
+    </div>
 
-            </div>
-            <div class="col-md-3 ">
-                @await Component.InvokeAsync("CategoryHot")
-            </div>
-        </div>
-    </main>
-</div>
+</section>
+<!-- Latest Blog Section End -->

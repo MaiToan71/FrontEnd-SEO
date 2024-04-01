@@ -14,12 +14,14 @@ namespace Project.FrontEnd.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            List<BannerViewModel> data = await _banner.GetHomeBanner();
+            List<BannerViewModel> data;
             try
             {
+                data = await _banner.GetHomeBanner();
             }
             catch (Exception ex)
             {
+                data = new List<BannerViewModel>();
             }
             return View(data);
         }

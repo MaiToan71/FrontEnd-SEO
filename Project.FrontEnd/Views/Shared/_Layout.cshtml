@@ -1,6 +1,8 @@
 ﻿@using Microsoft.Extensions.Configuration
 @inject IConfiguration Configuration
-
+@using Project.Proxy.ViewModels
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,20 +41,20 @@
     <link rel=canonical href="http://thibanglaixeso1.vn/">
 
 
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-		  rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+          rel="stylesheet">
 
     <!-- Css Styles -->
-  
-	<link rel="stylesheet" href="~/malefashion/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="~/malefashion/css/font-awesome.min.css" type="text/css">
-	<link rel="stylesheet" href="~/malefashion/css/elegant-icons.css" type="text/css">
-	<link rel="stylesheet" href="~/malefashion/css/magnific-popup.css" type="text/css">
-	<link rel="stylesheet" href="~/malefashion/css/nice-select.css" type="text/css">
-	<link rel="stylesheet" href="~/malefashion/css/owl.carousel.min.css" type="text/css">
-	<link rel="stylesheet" href="~/malefashion/css/slicknav.min.css" type="text/css">
-	<link rel="stylesheet" href="~/malefashion/css/style.css" type="text/css">
+
+    <link rel="stylesheet" href="~/malefashion/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/style.css?v=3.0" type="text/css">
 
 
     <!-- Google tag (gtag.js) -->
@@ -67,10 +69,10 @@
 
 </head>
 <body>
-@* 	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div> *@
+    @* 	<!-- Page Preloder -->
+    <div id="preloder">
+    <div class="loader"></div>
+    </div> *@
 
 
     <!-- Offcanvas Menu Begin -->
@@ -83,7 +85,7 @@
             </div>
             <div class="offcanvas__top__hover">
                 <span>VNĐ <i class="arrow_carrot-down"></i></span>
-              
+
             </div>
         </div>
         <div class="offcanvas__nav__option">
@@ -94,7 +96,7 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
-            <p>Free shipping, 30-day return or refund guarantee.</p>
+            <a style="color:white" href="https://www.messenger.com/t/107400932131986">Tư vấn hồ sơ bằng lái xe.</a>
         </div>
     </div>
     <!-- Offcanvas Menu End -->
@@ -105,16 +107,24 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-7">
                         <div class="header__top__left">
-                            <p>Free shipping, 30-day return or refund guarantee.</p>
+                            <a style="color:white" href="https://www.messenger.com/t/107400932131986">Tư vấn hồ sơ bằng lái xe.</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="#">Đăng nhập</a>
-                                <a href="#">Đăng ký</a>
+                                 @if (string.IsNullOrEmpty(@HttpContextAccessor.HttpContext.Session.GetString("_customerid")))
+                    {
+                                <a href="/login">Đăng nhập</a>
+                                <a href="/register">Đăng ký</a>
+                    }
+                                @if (!string.IsNullOrEmpty(@HttpContextAccessor.HttpContext.Session.GetString("_customerid")))
+                                {
+                                    <a href="/customer">@HttpContextAccessor.HttpContext.Session.GetString("_name")</a>
+                                    <a href="/login/logout">Đăng xuất</a>
+                                }
                             </div>
-                          
+
                         </div>
                     </div>
                 </div>
@@ -124,25 +134,21 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                      
-                        <a href="./index.html">  <img src="~/malefashion/img/logo.png" /></a>
+
+                        <a href="/" style="color:black; font-weight:bold; "><h1 style="font-size:30px !important">THI BẰNG LÁI XE</h1> </a>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9">
                     @await Component.InvokeAsync("Menu")
                 </div>
-               
+
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
         </div>
     </header>
     <!-- Header Section End -->
-
     <!-- Hero Section Begin -->
-    @await Component.InvokeAsync("HomeBanner")
     <!-- Hero Section End -->
-
-  
     @RenderBody()
 
     <!-- Footer Section Begin -->
@@ -152,43 +158,41 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                            <a href="/" style="color:white">THI BẰNG LÁI XE SỐ 1 TẠI HÀ NỘI</a>
                         </div>
-                        <p>The customer is at the heart of our unique business model, which includes design.</p>
-                        <a href="#"><img src="img/payment.png" alt=""></a>
+                        <p>Đăng ký xét duyệt nhanh chóng và bằng có sau 5-7 ngày</p>
                     </div>
                 </div>
                 <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
                     <div class="footer__widget">
-                        <h6>Shopping</h6>
+                        <h6>Thi bằng lái xe số 1 tại Hà Nội</h6>
                         <ul>
-                            <li><a href="#">Clothing Store</a></li>
-                            <li><a href="#">Trending Shoes</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Sale</a></li>
+                            <li><a href="/tra-cuu-ho-so">Lịch thi</a></li>
+
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="footer__widget">
-                        <h6>Shopping</h6>
+                        <h6>Thi bằng lái xe số 1 tại Hà Nội</h6>
                         <ul>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Delivary</a></li>
-                            <li><a href="#">Return & Exchanges</a></li>
+                            <li><a href="https://www.facebook.com/thiblxgiaree">Liên hệ với chúng tôi</a></li>
+                            <li><a href="/register">Đăng ký</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
                     <div class="footer__widget">
-                        <h6>NewLetter</h6>
-                        <div class="footer__newslatter">
-                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-                            <form action="#">
-                                <input type="text" placeholder="Your email">
-                                <button type="submit"><span class="icon_mail_alt"></span></button>
-                            </form>
+                        <h6>Liên hệ chơi chúng tôi</h6>
+                        <div class="footer__newslatter" style="cursor: pointer">
+                            <p>Tư vấn và xét duyệt hồ sơ nhanh chóng!</p>
+
+                            <a b-exm5fitpnp href="https://www.messenger.com/t/107400932131986" target="_blank" style="    text-decoration: none;
+    color: red;
+    font-weight: bold; ">
+                                <img src="~/imgs/messenger-fb.jpg" height="50" width="50" alt="icon fb" />
+                                Đăng ký Thi Bằng Lái Xe A1,A2 Tại Hà Nội !!!
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -202,8 +206,8 @@
                             <script>
                                 document.write(new Date().getFullYear());
                             </script>2020
-                            All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                                                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            All rights reserved | Thiết kế  <i class="fa fa-heart-o"
+                                                               aria-hidden="true"></i> bởi <a href="https://www.facebook.com/mai.toan.3990/" target="_blank">Mai Toản</a>
                         </p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
@@ -233,9 +237,12 @@
     <script src="~/malefashion/js/mixitup.min.js"></script>
     <script src="~/malefashion/js/owl.carousel.min.js"></script>
     <script src="~/malefashion/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+
+   
     @await RenderSectionAsync("Scripts", required: false)
 
-	
+
     <script>
         $('#basic-addon2').click(function () {
             window.open(`/tra-cuu-ho-so?cmnd=` + $('#searching').val(), '_blank').focus();
@@ -245,6 +252,7 @@
                 window.open(`/tra-cuu-ho-so?cmnd=` + $('#searching').val(), '_blank').focus();
             }
         });
+        $("img.lazyload").lazyload();
     </script>
 </body>
 </html>

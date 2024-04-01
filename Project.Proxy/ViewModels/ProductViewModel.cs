@@ -16,7 +16,7 @@ namespace Project.Proxy.ViewModels
         public decimal Price { set; get; }
         public decimal OriginalPrice { set; get; }
         public int ViewCount { set; get; }
-        public string DateCreated { get; set; } = "";
+        public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }
         public List<ImageViewModel> Images { get; set; } = new List<ImageViewModel>();
     }

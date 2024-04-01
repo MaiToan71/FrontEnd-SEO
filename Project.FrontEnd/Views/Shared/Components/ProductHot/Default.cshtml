@@ -1,34 +1,34 @@
 ﻿@using Microsoft.Extensions.Configuration
 @using Project.Proxy.ViewModels
 @model List<ProductViewModel>;
+
+
+<!-- Latest Blog Section Begin -->
+
 <div class="row">
-    @{
-        foreach(var p in Model)
-        {
-          <div class="col-md-4 col-sm-12">
-                <div class="card" >
-                    @if (p.Images.Count() == 0)
-                    {
-
-                        <img class="card-img-top" src="/imgs/default.jpg" alt="@p.Title" height="250" width="90" name="@p.Title" loading="lazy">
-                    }
-                    @if (p.Images.Count() > 0)
-                    {
-                        var image = p.Images.First();
-                        <img class="card-img-top" src="@image.Path" alt="@p.Title" name="@p.Title" loading="lazy" height="250" width="90">
-                    }
-
-                    <div class="card-body">
-                        <h5 class="card-title">@p.Title</h5>
-                        <p class="card-text">@Html.Raw(@p.Body)</p>
-                     <div class="d-flex justify-content-center">
-                            <a href="@p.SeoAlias" class="btn btn-primary ">Tìm hiểu thêm</a>
-                     </div>
-                    </div>
+    @foreach (var p in Model)
+    {
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="blog__item">
+                @if (p.Images.Count() == 0)
+                {
+                    <div class="blog__item__pic set-bg" data-setbg="imgs/default.jpg"></div>
+                }
+                @if (p.Images.Count() > 0)
+                {
+                    <div class="blog__item__pic set-bg" data-setbg="@p.Images[0].Path"></div>
+                }
+                <div class="blog__item__text">
+                    <span>
+                        <img src="~/malefashion/img/icon/calendar.png" />
+                        @p.DateCreated.ToString("dd-MM-yyyy")
+                    </span>
+                    <h5>@p.Title</h5>
+                    <a href="@p.SeoAlias">Tìm hiểu thêm</a>
                 </div>
-          </div>
-       
-        }
+            </div>
+        </div>
     }
-  
 </div>
+
+<!-- Latest Blog Section End -->
