@@ -16,7 +16,7 @@ namespace Project.FrontEnd.Controllers
             _logger = logger;
         }
 
-
+        [ResponseCache(CacheProfileName = "Default300")]
         public IActionResult Index()
         {
             return View();

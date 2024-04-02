@@ -129,19 +129,52 @@ ul.navbar-nav {
     color: white !important;
     text-decoration: none !important;
 }
-@media only screen and (max-width: 600px) {
-    .navbar-brand h1 {
-    }
-    .container-menu {
-        display: flex ;
-        justify-content: space-between;
-        flex-wrap:wrap;
-    }
-    .div-navbar-toggle{
-        display:flex;justify-content:end;
-        width:100%;
-    }
-    .website{
-        display:none
-    }
+
+.content-fix {
+    position: fixed;
+    z-index: 2000;
+    right: 10px;
+    top: 40%;
 }
+#media_image-4 .content-fix {
+    float: inline-end !important;
+}
+.image-upload {
+    margin: 18px 0 0 15px;
+}
+.image-upload {
+    background-color: #EE3124;
+    border: 1px solid #EE3124;
+    border-radius: 100px;
+    float: right;
+    padding: 8px 15px;
+}
+    .image-upload .title {
+        font-size: 15px;
+        color: #fff !important;
+        font-family: 'Samsung';
+        line-height: 1;
+        display: inline-block;
+        margin: 0;
+    }
+    @media only screen and (max-width: 600px) {
+        .navbar-brand h1 {
+        }
+
+        .container-menu {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .div-navbar-toggle {
+            display: flex;
+            justify-content: end;
+            width: 100%;
+        }
+
+        .website {
+            display: none
+        }
+    }
+

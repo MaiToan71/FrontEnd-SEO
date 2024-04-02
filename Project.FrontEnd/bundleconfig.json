@@ -1,0 +1,41 @@
+[
+  {
+    "outputFileName": "wwwroot/css/index-mobile.min.css",
+    "inputFiles": [
+      "wwwroot/css/index-mobile.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/home.min.css",
+    "inputFiles": [
+      "wwwroot/css/home.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/home.min.js",
+    "inputFiles": [
+      "wwwroot/js/home.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/scripts/homeindex.min.js",
+    "inputFiles": [
+      "wwwroot/scripts/homeindex.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+ 
+  {
+    "outputFileName": "gulpfile.min.js",
+    "inputFiles": [
+      "gulpfile.js"
+    ]
+  }
+]

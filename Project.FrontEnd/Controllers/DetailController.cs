@@ -11,6 +11,7 @@ namespace Project.FrontEnd.Controllers
         {
             _detail = detail;
         }
+        [ResponseCache(CacheProfileName = "Default300")]
         [Route("{slug}.html")]
         public async Task<IActionResult> Index(string slug)
         {

@@ -11,6 +11,7 @@ namespace Project.FrontEnd.Controllers
             _category = category;
         }
 
+        [ResponseCache(CacheProfileName = "Default300")]
         [Route("danh-muc/{slug}-{id}")]
         public async Task<IActionResult> Index(string slug, int id)
         {

@@ -10,6 +10,7 @@
 }
 
 
+
 <section class="hero">
     <div class="hero__slider owl-carousel">
         @if (Model.Images.Count() > 0)
@@ -18,8 +19,8 @@
             {
                 <div class="hero__items set-bg">
 
-                    <img class="lazyload img-fluid" src="@m.Path" height="600" width="1200" />
-                   
+                    <img class="lazyload img-fluid" src="@m.Path" alt="@m.Name" height="600" width="1200" />
+
                 </div>
             }   }
     </div>
@@ -102,7 +103,7 @@
                                 }
                                 <div class="blog__item__text">
                                     <span>
-                                        <img src="~/malefashion/img/icon/calendar.png" />
+                                        <img class="lazyload" src="~/malefashion/img/icon/calendar.png" />
                                         @p.DateCreated.ToString("dd-MM-yyyy")
                                     </span>
                                     <h5>@p.Title</h5>

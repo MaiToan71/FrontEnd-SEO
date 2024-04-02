@@ -11,6 +11,7 @@ namespace Project.FrontEnd.Controllers
             _ICustomer = ICustomer;
         }
 
+
         [Route("tra-cuu-ho-so")]
         public async Task<IActionResult> Index(string cmnd)
         {

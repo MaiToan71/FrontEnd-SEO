@@ -6,9 +6,9 @@
     <div class="hero__slider owl-carousel">
         @foreach (var m in Model)
         {
-            <div class="hero__items set-bg" >
-                <img loading="lazy" class="img-fluid" src="@m.Path" height="600" width="1200" />
-             
+            <div class="hero__items set-bg">
+                <img loading="lazy" class="img-fluid lazyload" alt="@m.Name" src="@m.Path" height="600" width="1200" />
+
             </div>
         }
     </div>
