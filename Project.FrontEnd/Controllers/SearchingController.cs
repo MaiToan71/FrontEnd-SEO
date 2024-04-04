@@ -13,14 +13,19 @@ namespace Project.FrontEnd.Controllers
 
 
         [Route("tra-cuu-ho-so")]
-        public async Task<IActionResult> Index(string cmnd)
+        public async Task<IActionResult> Index(string cmnd , string date)
         {
             string searchCmnd = "";
             if (!string.IsNullOrEmpty(cmnd))
             {
                 searchCmnd = cmnd;
             }
-            var data = await _ICustomer.GetCustomerInCalenar(searchCmnd);
+            string searchDate = "";
+            if (!string.IsNullOrEmpty(date))
+            {
+                searchDate = date;
+            }
+            var data = await _ICustomer.GetCustomerInCalenar(searchCmnd, searchDate);
             return View(data);
         }
     }

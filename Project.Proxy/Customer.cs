@@ -73,7 +73,7 @@ namespace Project.Proxy
             }
         }
 
-        public async Task<List<CustomerCalendarViewModel>> GetCustomerInCalenar(string cmnd)
+        public async Task<List<CustomerCalendarViewModel>> GetCustomerInCalenar(string cmnd, string date)
         {
             List<CustomerCalendarViewModel> data = new List<CustomerCalendarViewModel>();
 
@@ -83,7 +83,7 @@ namespace Project.Proxy
                 {
                     httpClient.BaseAddress = new Uri(_api);
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    string url = $"/api/CustomerDates/searching?cmnd={cmnd}&PageIndex=1&PageSize=100";
+                    string url = $"/api/CustomerDates/searching?cmnd={cmnd}&date={date}&PageIndex=1&PageSize=100";
                     var responseMessage = await httpClient.GetAsync(url);
                     if (responseMessage.IsSuccessStatusCode)
                     {

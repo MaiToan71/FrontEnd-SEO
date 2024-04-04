@@ -37,31 +37,32 @@ namespace Project.FrontEnd.Sitemaps.Providers
             var menus = await _menu.GetAll();
             string domainHome = $"{_configuration.GetValue<string>("Domain:FrontEnd")}";
 
-            elements.Add(new SitemapNode(domainHome)
-            {
-                Priority =1,
-                LastModificationDate = DateTime.Now,
-            });
+            //elements.Add(new SitemapNode(domainHome)
+            //{
+            //    Priority =1,
+            //    LastModificationDate = DateTime.Now,
+            //});
 
-            elements.Add(new SitemapNode($"{_configuration.GetValue<string>("Domain:FrontEnd")}/tra-cuu-ho-so")
-            {
-                Priority = 1,
-                LastModificationDate = DateTime.Now,
-            });
+            //elements.Add(new SitemapNode($"{_configuration.GetValue<string>("Domain:FrontEnd")}/tra-cuu-ho-so")
+            //{
+            //    Priority = 1,
+            //    LastModificationDate = DateTime.Now,
+            //});
 
-            foreach ( var m in menus )
-            {
-                string domain = $"{_configuration.GetValue<string>("Domain:FrontEnd")}/danh-muc/{m.Slug}";
-                var url = domain;
+            //foreach ( var m in menus )
+            //{
+            //    string domain = $"{_configuration.GetValue<string>("Domain:FrontEnd")}/danh-muc/{m.Slug}";
+            //    var url = domain;
                 
-                elements.Add(new SitemapNode(url)
-                {
-                    Priority = 1,
-                    LastModificationDate = DateTime.Now,
-                });
-            }
+            //    elements.Add(new SitemapNode(url)
+            //    {
+            //        Priority = 1,
+            //        LastModificationDate = DateTime.Now,
+            //    });
+            //}
+
             var products = await _product.GetAllPagingProduct(1, 30);
-            foreach(var p in products.Data)
+            foreach (var p in products.Data)
             {
                 string domain = $"{_configuration.GetValue<string>("Domain:FrontEnd")}{p.SeoAlias}";
                 var url = domain;
@@ -72,7 +73,6 @@ namespace Project.FrontEnd.Sitemaps.Providers
                     LastModificationDate = p.DateUpdated,
                 });
             }
-           
             return elements;
         }
     }

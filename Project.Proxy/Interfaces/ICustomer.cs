@@ -13,6 +13,6 @@ namespace Project.Proxy.Interfaces
        Task<ResponseLoginViewModel> Login(LoginViewModel request);
         Task<bool> Register(RegisterViewModel request);
         Task<CustomerViewModel> GetById(int id);
-        Task<List<CustomerCalendarViewModel>> GetCustomerInCalenar(string cmnd);
+        Task<List<CustomerCalendarViewModel>> GetCustomerInCalenar(string cmnd, string searchDate);
     }
 }

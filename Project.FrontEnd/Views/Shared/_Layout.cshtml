@@ -56,7 +56,7 @@
     <link rel="stylesheet" href="~/malefashion/css/slicknav.min.css?v=3.0" type="text/css">
     <link rel="stylesheet" href="~/malefashion/css/style.css?v=3.0" type="text/css">
     <link href="~/css/site.css?v=3.0" rel="stylesheet" />
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF2WDPWK69"></script>
@@ -183,7 +183,7 @@
                             <a b-exm5fitpnp href="https://www.messenger.com/t/107400932131986" target="_blank" style="    text-decoration: none;
     color: red;
     font-weight: bold; ">
-                                <img src="~/imgs/messenger-fb.jpg" height="50" width="50" alt="icon fb" />
+                                <img src="~/imgs/messenger-fb.jpg" class="lazyload" loading="lazy" height="50" width="50" alt="icon fb" />
                                 Đăng ký Thi Bằng Lái Xe A1,A2 Tại Hà Nội !!!
                             </a>
                         </div>
@@ -223,7 +223,7 @@
         <section id="media_image-4" class="widget widget_media_image">
             <div class="widget-wrap" style="float: inline-end;">
                 <a href="https://www.messenger.com/t/107400932131986" class="bam-chat-fb">
-                    <img src="~/imgs/mess.svg" class="image wp-image-31914 attachment-full size-full lazyloaded"
+                    <img src="~/imgs/mess.svg" width="50" height="50" class="image wp-image-31914 attachment-full size-full lazyload"
                          alt="" decoding="async" loading="lazy" style="max-width: 100%; height: auto;"
                          src="~/imgs/mess.svg">
                 </a>
@@ -235,7 +235,8 @@
                     <div class="box">
                         <a href="tel:0332418888" class="alignleft">
                             <img src="~/imgs/hotline.svg"
-                                 class="attachment-full size-full" alt="hotline" decoding="async" loading="lazy">
+                                 width="20" height="20"
+                                 class="attachment-full size-full lazyload" alt="hotline" decoding="async" loading="lazy">
                         </a>
                         <p class="title"><a style="color:white" href="tel:0332418888">0332418888</a></p>
 
@@ -258,23 +259,36 @@
     <script src="~/malefashion/js/mixitup.min.js"></script>
     <script src="~/malefashion/js/owl.carousel.min.js"></script>
     <script src="~/malefashion/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
-
-
+    <script src="~/lib/vjs-quality-picker.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
 
     <script>
+        $("#datepicker").datepicker({
+            dateFormat: "dd-mm-yy",
+            onClose: function (selectedDate) {
+                $(".pickdate svg").click();
+            }
+        });
+ 
+
         $('#basic-addon2').click(function () {
-            window.open(`/tra-cuu-ho-so?cmnd=` + $('#searching').val(), '_blank').focus();
+            window.open(`/tra-cuu-ho-so?date=${$('#datepicker').val()}&cmnd=` + $('#searching').val(), '_blank').focus();
         });
         $("#searching").on('keyup', function (e) {
             if (e.key === 'Enter' || e.keyCode === 13) {
-                window.open(`/tra-cuu-ho-so?cmnd=` + $('#searching').val(), '_blank').focus();
+                window.open(`/tra-cuu-ho-so??date=${$('#datepicker').val()}&cmnd=` + $('#searching').val(), '_blank').focus();
             }
         });
-        $("img.lazyload").lazyload();
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const date = urlParams.get('date')
+        const cmnd = urlParams.get('cmnd')
+        $('#searching').val(cmnd)
+        $("#datepicker").datepicker('setDate', date);
+
     </script>
 </body>
 </html>
