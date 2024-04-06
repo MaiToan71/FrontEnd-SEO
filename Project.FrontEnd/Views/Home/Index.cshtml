@@ -9,7 +9,7 @@
     ViewData["Imags"] = @Configuration.GetSection("Domain")["FrontEnd"] + "/imgs/default.jpg";
 }
 @await Component.InvokeAsync("HomeBanner")
-<section class="banner spad p-2">
+<section class="banner spad p-2 mt-5">
     <div class="container " >
         <div class="row">
             <h3>TRUNG TÂM ĐÀO TẠO BẰNG LÁI XE HÀ NỘI</h3>
@@ -26,7 +26,7 @@
                 @await Component.InvokeAsync("ProductHot")
             </div>
         </div>
-        <div class="row ">
+        <div class=" ">
             <h3>CÁC CON SỐ VỀ THI BẰNG LÁI XE MÁY</h3>
             <div class="row mt-3">
                 <div class="col-md-3 col-sm-6">

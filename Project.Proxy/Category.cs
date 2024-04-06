@@ -49,6 +49,7 @@ namespace Project.Proxy
                         var response = await responseMessage.Content.ReadAsAsync<dynamic>();
                         List<ImageViewModel> images = new List<ImageViewModel>();
                         List<ProductViewModel> products = new List<ProductViewModel>();
+                        category.Id = response.id;
                         if (response.name != null)
                         {
                             category.Name = response.name;
@@ -73,37 +74,37 @@ namespace Project.Proxy
                             images.Add(newImage);
                         }
                         category.Images = images;
-                        foreach (var p in response.products)
-                        {
-                            List<ImageViewModel> productImages = new List<ImageViewModel>();
-                            int productId = p.id;
-                            string productName = p.title;
-                            var product = new ProductViewModel()
-                            {
-                                Id = p.id,
-                                Title = p.title,
-                                DateCreated = p.dateCreated,
-                                Description = p.description,
-                                SeoAlias = $"/{p.seoAlias}.html"
-                            };
-                            if (p.images != null)
-                            {
-                                foreach (var pimg in p.images)
-                                {
-                                    productImages.Add(new ImageViewModel()
-                                    {
-                                        Id = pimg.id,
-                                        Name = pimg.caption,
-                                        Path = $"{_api}{pimg.imagePath}",
-                                    });
-                                    productImages.Add(pimg);
-                                }
-                                product.Images = productImages;
-                            }
-                            products.Add(product);
+                        //foreach (var p in response.products)
+                        //{
+                        //    List<ImageViewModel> productImages = new List<ImageViewModel>();
+                        //    int productId = p.id;
+                        //    string productName = p.title;
+                        //    var product = new ProductViewModel()
+                        //    {
+                        //        Id = p.id,
+                        //        Title = p.title,
+                        //        DateCreated = p.dateCreated,
+                        //        Description = p.description,
+                        //        SeoAlias = $"/{p.seoAlias}.html"
+                        //    };
+                        //    if (p.images != null)
+                        //    {
+                        //        foreach (var pimg in p.images)
+                        //        {
+                        //            productImages.Add(new ImageViewModel()
+                        //            {
+                        //                Id = pimg.id,
+                        //                Name = pimg.caption,
+                        //                Path = $"{_api}{pimg.imagePath}",
+                        //            });
+                        //            productImages.Add(pimg);
+                        //        }
+                        //        product.Images = productImages;
+                        //    }
+                        //    products.Add(product);
 
-                        }
-                        category.Products = products;
+                        //}
+                        //category.Products = products;
                     }
 
 

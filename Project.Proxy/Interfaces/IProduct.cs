@@ -9,6 +9,6 @@ namespace Project.Proxy.Interfaces
 {
     public interface IProduct
     {
-        public Task<ResponsePaging> GetAllPagingProduct(int page, int size);
+        public Task<ResponsePaging> GetAllPagingProduct(int page, int size,int cateId);
     }
 }

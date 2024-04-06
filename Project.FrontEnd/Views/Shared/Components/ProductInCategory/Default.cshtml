@@ -1,0 +1,87 @@
+﻿@using Microsoft.Extensions.Configuration
+@using Project.Proxy.ViewModels
+@model ResponsePaging;
+@{
+    int prerious = @ViewBag.page - 1;
+
+    int next = @ViewBag.page + 1;
+    string active = "";
+
+
+}
+@if(prerious < 1)
+{
+    prerious = 1;
+}
+
+@{
+    if (Model.Total > 0)
+    {
+        @if (Model.Data.Count() > 0)
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Tin tức</span>
+                        <h2>Bài viết liên quan</h2>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row">
+            @foreach (var p in Model.Data)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="blog__item">
+                        @if (p.Images.Count() == 0)
+                        {
+                            <div class="blog__item__pic set-bg" data-setbg="/imgs/default.jpg"></div>
+                        }
+                        @if (p.Images.Count() > 0)
+                        {
+                            var image = p.Images.First();
+                            <div class="blog__item__pic set-bg" data-setbg="@image.Path"></div>
+                        }
+                        <div class="blog__item__text">
+                            <span>
+                                <img class="lazyload" src="~/malefashion/img/icon/calendar.png" alt="icom" />
+                                @p.DateCreated.ToString("dd-MM-yyyy")
+                            </span>
+                            <h5>@p.Title</h5>
+                            <a href="@p.SeoAlias">Tìm hiểu thêm</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <nav aria-label="..." class="d-flex justify-content-center align-items-center">
+            <ul class="pagination">
+
+                <li class="page-item ">
+                    <a class="page-link" href="/@ViewBag.categoryPage?page=@prerious" tabindex="-1" aria-disabled="true">Quay lại</a>
+                </li>
+                @for (int i = 1; i <= @Model.Total / 9 + 1; i++)
+                {
+                    if(ViewBag.page == i)
+                    {
+                        active ="active";
+                    }
+                    else
+                    {
+                        active = "";
+                    }
+
+
+                    <li class="page-item @active" aria-current="page">
+                        <a class="page-link" href="/@ViewBag.categoryPage?page=@i">@i</a>
+                    </li>
+                }
+                <li class="page-item">
+                    <a class="page-link" href="/@ViewBag.categoryPage?page=@next">Tiếp tục</a>
+                </li>
+            </ul>
+        </nav>
+    }
+
+}

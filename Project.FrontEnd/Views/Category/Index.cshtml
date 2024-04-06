@@ -71,50 +71,9 @@
             </div>
 
         }
-        @if (Model.Products != null)
-        {
-            @if (Model.Products.Count() > 0)
-            {
-                @if (!string.IsNullOrEmpty(Model.Body))
-                {
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="section-title">
-                                <span>Tin tức</span>
-                                <h2>Bài viết liên quan</h2>
-                            </div>
-                        </div>
-                    </div>
-                }
-                <div class="row">
 
-                    @foreach (var p in @Model.Products)
-                    {
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                @if (p.Images.Count() == 0)
-                                {
-                                    <div class="blog__item__pic set-bg" data-setbg="/imgs/default.jpg"></div>
-                                }
-                                @if (p.Images.Count() > 0)
-                                {
-                                    var image = p.Images.First();
-                                    <div class="blog__item__pic set-bg" data-setbg="@image.Path"></div>
-                                }
-                                <div class="blog__item__text">
-                                    <span>
-                                        <img class="lazyload" src="~/malefashion/img/icon/calendar.png" />
-                                        @p.DateCreated.ToString("dd-MM-yyyy")
-                                    </span>
-                                    <h5>@p.Title</h5>
-                                    <a href="@p.SeoAlias">Tìm hiểu thêm</a>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            }
-        }
+        @await Component.InvokeAsync("ProductInCategory", new  { cateId = @Model.Id, page= ViewBag.page })
+        
     </div>
 
 </section>

@@ -13,8 +13,10 @@ namespace Project.FrontEnd.Controllers
 
         [ResponseCache(CacheProfileName = "Default300")]
         [Route("danh-muc/{slug}-{id}")]
-        public async Task<IActionResult> Index(string slug, int id)
+        public async Task<IActionResult> Index(string slug, int id, int page=1)
         {
+            ViewBag.categoryPage = $"danh-muc/{slug}-{id}";
+            ViewBag.page = page;
             var data = await _category.GetCategory(id);
             return View(data);
         }

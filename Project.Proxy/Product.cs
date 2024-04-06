@@ -20,11 +20,11 @@ namespace Project.Proxy
             _ICachingExtension = ICachingExtension;
             _api = api;
         }
-        public async Task<ResponsePaging> GetAllPagingProduct(int page, int size)
+        public async Task<ResponsePaging> GetAllPagingProduct(int page, int size, int cateId)
         {
             var responsePaging = new ResponsePaging();
             var products = new List<ProductViewModel>();
-            string cacheKey = $"GetAllPagingProduct_{page}_{size}";
+            string cacheKey = $"GetAllPagingProduct_{page}_{size}_{cateId}";
             object cache_Payload;
             try
             {
@@ -42,6 +42,10 @@ namespace Project.Proxy
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                     string url = $"api/publish/product?PageIndex={page}&PageSize={size}";
+                    if (cateId != 0)
+                    {
+                        url = $"api/publish/product?CategoryIds={cateId}&PageIndex={page}&PageSize={size}";
+                    }
                     var responseMessage = await httpClient.GetAsync(url);
                     if (responseMessage.IsSuccessStatusCode)
                     {
