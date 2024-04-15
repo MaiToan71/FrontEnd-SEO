@@ -47,16 +47,16 @@
 
     <!-- Css Styles -->
 
-    <link rel="stylesheet" href="~/malefashion/css/bootstrap.min.css?v=3.1" type="text/css">
-    <link rel="stylesheet" href="~/malefashion/css/font-awesome.min.css?v=3.1" type="text/css">
-    <link rel="stylesheet" href="~/malefashion/css/elegant-icons.css?v=3.1" type="text/css">
-    <link rel="stylesheet" href="~/malefashion/css/magnific-popup.css?v=3.1" type="text/css">
-    <link rel="stylesheet" href="~/malefashion/css/nice-select.css?v=3.1" type="text/css">
-    <link rel="stylesheet" href="~/malefashion/css/owl.carousel.min.css?v=3.1" type="text/css">
-    <link rel="stylesheet" href="~/malefashion/css/slicknav.min.css?v=3.1" type="text/css">
-    <link rel="stylesheet" href="~/malefashion/css/style.css?v=3.1" type="text/css">
-    <link href="~/css/site.css?v=3.1" rel="stylesheet" />
-    <link href="~/lib/jquery-ui.css?v=3.1" rel="stylesheet" />
+    <link rel="stylesheet" href="~/malefashion/css/bootstrap.min.css?v=3.2" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/font-awesome.min.css?v=3.2" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/elegant-icons.css?v=3.2" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/magnific-popup.css?v=3.2" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/nice-select.css?v=3.2" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/owl.carousel.min.css?v=3.2" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/slicknav.min.css?v=3.2" type="text/css">
+    <link rel="stylesheet" href="~/malefashion/css/style.css?v=3.2" type="text/css">
+    <link href="~/css/site.css?v=3.2" rel="stylesheet" />
+    <link href="~/lib/jquery-ui.css?v=3.2" rel="stylesheet" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF2WDPWK69"></script>
@@ -81,8 +81,9 @@
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__option">
             <div class="offcanvas__links">
-                <a href="#">Đăng nhập</a>
-                <a href="#">Đăng ký</a>
+                <a href="/login">Đăng nhập</a>
+                <a href="/register">Đăng ký</a>
+                <a href="/tra-cuu-ho-so">Tra cứu lịch thi</a>
             </div>
 
         </div>
@@ -116,6 +117,8 @@
                                     <a href="/customer">@HttpContextAccessor.HttpContext.Session.GetString("_name")</a>
                                     <a href="/login/logout">Đăng xuất</a>
                                 }
+
+                                <a href="/tra-cuu-ho-so">Tra cứu lịch thi</a>
                             </div>
 
                         </div>
@@ -155,6 +158,11 @@
                         </div>
                         <p>Đăng ký xét duyệt nhanh chóng và bằng có sau 5-7 ngày</p>
                     </div>
+                    <div class="mb-4">
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0&appId=1127349410978044" nonce="RKFSJ6PK"></script>
+                        <div class="fb-page" data-href="https://www.facebook.com/thiblxgiaree/" data-tabs="timeline" data-width="" data-height="100" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/thiblxgiaree/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/thiblxgiaree/">Thi Bằng Lái Xe A1,A2 Tại Hà Nội</a></blockquote></div>
+                    </div>
                 </div>
                 <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
                     <div class="footer__widget">
@@ -190,6 +198,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="footer__copyright__text">
@@ -244,23 +253,24 @@
                 </div>
             </div>
         </section>
+     
     </div>
 
 
     <!-- Search End -->
     <!-- Js Plugins -->
-    <script src="~/malefashion/js/jquery-3.3.1.min.js?v=3.1"></script>
-    <script src="~/malefashion/js/bootstrap.min.js?v=3.1"></script>
-    <script src="~/malefashion/js/jquery.nice-select.min.js?v=3.1"></script>
-    <script src="~/malefashion/js/jquery.nicescroll.min.js?v=3.1"></script>
-    <script src="~/malefashion/js/jquery.magnific-popup.min.js?v=3.1"></script>
-    <script src="~/malefashion/js/jquery.countdown.min.js?v=3.1"></script>
-    <script src="~/malefashion/js/jquery.slicknav.js?v=3.1"></script>
-    <script src="~/malefashion/js/mixitup.min.js?v=3.1"></script>
-    <script src="~/malefashion/js/owl.carousel.min.js?v=3.1"></script>
-    <script src="~/malefashion/js/main.js?v=3.1"></script>
-    <script src="~/lib/vjs-quality-picker.min.js?v=3.1"></script>
-    <script src="~/lib/jquery-ui.js?v=3.1"></script>
+    <script src="~/malefashion/js/jquery-3.3.1.min.js?v=3.2"></script>
+    <script src="~/malefashion/js/bootstrap.min.js?v=3.2"></script>
+    <script src="~/malefashion/js/jquery.nice-select.min.js?v=3.2"></script>
+    <script src="~/malefashion/js/jquery.nicescroll.min.js?v=3.2"></script>
+    <script src="~/malefashion/js/jquery.magnific-popup.min.js?v=3.2"></script>
+    <script src="~/malefashion/js/jquery.countdown.min.js?v=3.2"></script>
+    <script src="~/malefashion/js/jquery.slicknav.js?v=3.2"></script>
+    <script src="~/malefashion/js/mixitup.min.js?v=3.2"></script>
+    <script src="~/malefashion/js/owl.carousel.min.js?v=3.2"></script>
+    <script src="~/malefashion/js/main.js?v=3.2"></script>
+    <script src="~/lib/vjs-quality-picker.min.js?v=3.2"></script>
+    <script src="~/lib/jquery-ui.js?v=3.2"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 

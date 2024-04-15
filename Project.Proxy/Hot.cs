@@ -50,12 +50,12 @@ namespace Project.Proxy
                         foreach (var i in response)
                         {
                             List<ProductViewModel> products = new List<ProductViewModel>();
-                            string catName = i.name;
+                            string catName = i.title;
                             int cateId = i.id;
                             var newObj = new CategoryOutstandViewModel
                             {
                                 Id = i.id,
-                                Name = i.name,
+                                Name = i.title,
                                 Description = i.description,
                                 Slug = $"{Extenstion.ConvertStringToSlug(catName, cateId)}",
 
@@ -128,14 +128,14 @@ namespace Project.Proxy
                                 Id = i.id,
                                 Body = i.body,
                                 Title = i.title,
-                                ViewCount= i.viewCount,
+                                ViewCount = i.viewCount,
                                 SeoAlias = $"/{i.seoAlias}.html",
                                 Description = i.description,
                                 DateCreated = i.dateCreated,
                                 DateUpdated = i.dateUpdated,
                             };
-                            
-                            foreach(var img in i.images)
+
+                            foreach (var img in i.images)
                             {
                                 var image = new ImageViewModel()
                                 {

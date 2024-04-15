@@ -8,9 +8,6 @@
     ViewData["Description"] = @Model.Description;
     ViewData["Imags"] = @Configuration.GetSection("Domain")["FrontEnd"] + "/imgs/default.jpg";
 }
-
-
-
 <section class="hero">
     <div class="hero__slider owl-carousel">
         @if (Model.Images.Count() > 0)
@@ -48,17 +45,10 @@
     <div class="container">
         @if (!string.IsNullOrEmpty(Model.Body))
         {
-            <div class="row row d-flex justify-content-center">
-                <div class="col-lg-8">
+            <div class="row row d-flex flex-wrap">
+                <div class="col-lg-9">
                     <div class="blog__details__content">
-                        <div class="blog__details__share">
-                            <span>Theo dõi</span>
-                            <ul>
-                                <li><a href="https://www.facebook.com/thiblxgiaree"><i class="fa fa-facebook"></i></a></li>
 
-                                <li><a href="https://www.messenger.com/t/107400932131986"><img src="~/malefashion/img/icon/messenger (1).png" height="20" width="20" loading="lazy" style="color:white" /></a></li>
-                            </ul>
-                        </div>
                         <div class="blog__details__text">
                             @if (!string.IsNullOrEmpty(Model.Body))
                             {
@@ -68,12 +58,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-3">
+                    @await Component.InvokeAsync("CategoryHot")
+                </div>
             </div>
-
         }
-
-        @await Component.InvokeAsync("ProductInCategory", new  { cateId = @Model.Id, page= ViewBag.page })
-        
+        @await Component.InvokeAsync("ProductInCategory", new { cateId = @Model.Id, page = ViewBag.page })
     </div>
 
 </section>

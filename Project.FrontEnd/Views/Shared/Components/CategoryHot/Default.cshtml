@@ -1,28 +1,27 @@
 ﻿@using Microsoft.Extensions.Configuration
 @using Project.Proxy.ViewModels
 @model List<CategoryOutstandViewModel>;
-<div id="secondary">
+
+<div id="secondary" class="widget-area " role="complementary">
     @{
-        foreach(var c in Model)
+        foreach (var c in Model)
         {
-            <div class="widget widget_nav_menu">
-                <a href="/danh-muc/@c.Slug" style="text-decoration:none; font-weight:bold">
-                    <h4 class="widget-title  " >@c.Name</h4>
-                </a>
-                <ul class="block_widget">
-                    @{
-                        foreach(var p in c.Products)
+            <aside id="nav_menu-3" class="widget widget_nav_menu">
+                <span class="widget-title ">
+                    <a href="/danh-muc/@c.Slug" style="color:black">@c.Description</a>
+                </span>
+                <div class="menu-dich-vu-cua-chung-toi-container">
+                    <ul id="menu-dich-vu-cua-chung-toi" class="menu">
+                        @foreach (var p in c.Products)
                         {
-                            <li class="col post-item">
-                                <a href="@p.SeoAlias">@p.Title</a>
+                            <li id="menu-item-508" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-77 current_page_item menu-item-508">
+                                <a href="@p.SeoAlias" style="color:black" aria-current="page">@p.Title</a>
                             </li>
                         }
-                    }
-                 
-                </ul>
-            </div>
+
+                    </ul>
+                </div>
+            </aside>
         }
     }
-   
-   
 </div>
